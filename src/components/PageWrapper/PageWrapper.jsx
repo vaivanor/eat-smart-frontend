@@ -1,9 +1,11 @@
 import style from "./PageWrapper.module.css";
+import { Footer } from "../Footer/Footer.jsx";
 
 export const PageWrapper = ({ children }) => {
   return (
-    <>
-      <main className={style.container}>{children}</main>
-    </>
+    <div className={style.container}>
+      <main className={style.mainContainer}>{children}</main>
+      <Footer />
+    </div>
   );
 };
