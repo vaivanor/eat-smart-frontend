@@ -2,4 +2,16 @@
   font-family: "Space Grotesk", sans-serif;
   color: #1c2632;
   background-color: white;
+}
+:root h1,
+:root h2,
+:root h3,
+:root p {
+  margin: 0;
+  margin: 1rem 0;
+}
+:root h1,
+:root h2,
+:root h3 {
+  font-weight: 500;
 }/*# sourceMappingURL=index.css.map */
