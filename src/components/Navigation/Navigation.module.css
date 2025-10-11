@@ -1,0 +1,14 @@
+a {
+  text-decoration: none;
+  color: #1c2632;
+}
+a:hover {
+  opacity: 0.5;
+}
+
+.active {
+  color: #feb161;
+}
+.active:hover {
+  color: #e2944d;
+}/*# sourceMappingURL=Navigation.module.css.map */
