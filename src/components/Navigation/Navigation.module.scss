@@ -1,0 +1,16 @@
+@use "../../styles/variables" as *;
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.active {
+  color: $accent-color;
+  &:hover {
+    color: $accent-hover-color;
+  }
+}
