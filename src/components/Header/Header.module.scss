@@ -1,0 +1,12 @@
+@use "../../styles/variables" as *;
+
+.header {
+  padding: 0.5rem $padding-base;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 1px #d5d3cf;
+  .img {
+    width: 10rem;
+  }
+}

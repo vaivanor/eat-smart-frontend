@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247.93 60.99">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #1c2632;
+      }
+
+      .cls-3 {
+        font-family: SpaceGrotesk-Medium, 'Space Grotesk';
+        font-size: 40px;
+        font-variation-settings: 'wght' 500;
+        font-weight: 500;
+      }
+
+      .cls-4 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-5 {
+        fill: #feb161;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <text class="cls-3" transform="translate(70.01 45.41)"><tspan x="0" y="0">E</tspan><tspan class="cls-4" x="22.36" y="0">a</tspan><tspan x="44.08" y="0">tSmart</tspan></text>
+      <g>
+        <circle class="cls-5" cx="30.49" cy="30.49" r="30.49"/>
+        <ellipse class="cls-1" cx="30.55" cy="31.01" rx="15.25" ry="10.87"/>
+        <rect class="cls-1" x="1.84" y="28.35" width="16.47" height="5.33" rx="2.52" ry="2.52" transform="translate(-20.93 41.09) rotate(-90)"/>
+        <rect class="cls-1" x="42.78" y="28.35" width="16.47" height="5.33" rx="2.66" ry="2.66" transform="translate(20.01 82.03) rotate(-90)"/>
+        <ellipse class="cls-2" cx="30.49" cy="30.49" rx="1.91" ry="1.85"/>
+        <rect class="cls-2" x="23.1" y="23.28" width="14.79" height="1.8" rx=".9" ry=".9" transform="translate(6.32 54.68) rotate(-90)"/>
+        <rect class="cls-2" x="27.55" y="33.3" width="10.57" height="1.8" rx=".9" ry=".9" transform="translate(22.99 80.57) rotate(-124.19)"/>
+        <ellipse class="cls-1" cx="30.49" cy="30.49" rx=".9" ry=".82"/>
+      </g>
+    </g>
+  </g>
+</svg>

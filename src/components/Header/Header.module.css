@@ -1,0 +1,10 @@
+.header {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 1px #d5d3cf;
+}
+.header .img {
+  width: 10rem;
+}/*# sourceMappingURL=Header.module.css.map */
