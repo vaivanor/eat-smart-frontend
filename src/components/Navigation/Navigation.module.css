@@ -10,12 +10,23 @@
 .container a:hover {
   opacity: 0.5;
 }
+@media (min-width: 768px) {
+  .container a {
+    color: #1c2632;
+  }
+}
 .container .active {
   color: #feb161;
 }
 .container .active:hover {
   color: #e2944d;
   opacity: 1;
+}
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    background-color: white;
+  }
 }
 
 .menu {
@@ -30,6 +41,11 @@
 .menu .img {
   width: 1rem;
 }
+@media (min-width: 760px) {
+  .menu {
+    display: none;
+  }
+}
 
 .open {
   position: fixed;
@@ -40,4 +56,9 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+}
+@media (min-width: 760px) {
+  .open {
+    display: none;
+  }
 }/*# sourceMappingURL=Navigation.module.css.map */

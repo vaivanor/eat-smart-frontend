@@ -2,16 +2,27 @@ import style from "./Navigation.module.scss";
 import { NavLink } from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuClose from "../../assets/menu-close.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   const getClass = ({ isActive }) => {
     return isActive ? style.active : "";
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isOpen) {
+        setIsOpen(false);
+      }
+    };
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen]);
 
   return (
     <>
