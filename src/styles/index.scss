@@ -1,0 +1,12 @@
+@import "./variables";
+
+:root {
+  font-family: $font;
+
+  color: #1c2632;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
