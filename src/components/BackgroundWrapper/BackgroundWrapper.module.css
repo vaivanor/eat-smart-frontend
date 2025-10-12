@@ -3,9 +3,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   overflow: hidden;
   color: white;
+  background-color: #1c2632;
 }
 .container::before {
   content: "";
@@ -18,4 +19,14 @@
 .container > * {
   position: relative;
   z-index: 1;
-}/*# sourceMappingURL=Heading.module.css.map */
+}
+@media (min-width: 768px) {
+  .container {
+    padding: 4rem 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    padding: 6rem 6rem;
+  }
+}/*# sourceMappingURL=BackgroundWrapper.module.css.map */

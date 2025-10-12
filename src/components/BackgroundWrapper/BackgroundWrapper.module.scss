@@ -5,9 +5,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   overflow: hidden;
   color: $light-color;
+  background-color: $primary-color;
   &::before {
     content: "";
     position: absolute;
@@ -19,5 +20,11 @@
   > * {
     position: relative;
     z-index: 1;
+  }
+  @media (min-width: 768px) {
+    padding: 4rem 3rem;
+  }
+  @media (min-width: 1200px) {
+    padding: 6rem 6rem;
   }
 }
