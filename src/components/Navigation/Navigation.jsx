@@ -27,7 +27,7 @@ export const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 760 });
   const buttonType = isMobile ? "secondary" : "primary";
 
   const navigate = useNavigate();
@@ -48,8 +48,8 @@ export const Navigation = () => {
 
         <Button
           type={buttonType}
-          text="Log In"
-          onClick={() => navigate("/login")}
+          text="Sign In"
+          onClick={() => navigate("/sign-in")}
         />
       </nav>
     </>

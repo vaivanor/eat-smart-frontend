@@ -5,13 +5,16 @@
 }
 :root h1,
 :root h2,
-:root h3,
+:root h3 {
+  margin: 0;
+  margin: 2rem 0;
+}
 :root p {
   margin: 0;
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 :root h1,
 :root h2,
 :root h3 {
-  font-weight: 500;
+  font-weight: 600;
 }/*# sourceMappingURL=index.css.map */

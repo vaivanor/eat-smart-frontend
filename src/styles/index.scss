@@ -7,15 +7,19 @@
 
   h1,
   h2,
-  h3,
+  h3 {
+    margin: 0;
+    margin: $padding-min 0;
+  }
+
   p {
     margin: 0;
-    margin: $padding-base 0;
+    margin: $padding-min 0;
   }
 
   h1,
   h2,
   h3 {
-    font-weight: 500;
+    font-weight: 600;
   }
 }
