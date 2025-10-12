@@ -49,27 +49,26 @@ export const Home = () => {
       </GridWrapper>
 
       <GridWrapper columns={1} type="center" typeTheme="dark">
+        <h2>How it Works?</h2>
         <div>
-          <h2>Find a Restaurant</h2>
+          <h3>Find a Restaurant</h3>
           <p>
             Browse a curated list of restaurants based on your location and
-            preferences. Discover places by cuisine, rating, or availability.
+            preferences. Discover places by cuisine, rating.
           </p>
         </div>
         <div>
-          <h2>Sign In to Reserve</h2>
+          <h3>Sign In to Reserve</h3>
           <p>
             To book a table, you need to sign in. This ensures your reservations
-            are saved and manageable. Once signed in, choose your date and time,
-            and reserve instantly.
+            are saved and manageable.
           </p>
         </div>
         <div>
-          <h2>Manage Your Visit</h2>
+          <h3>Manage Your Visit</h3>
           <p>
             Access your personal dashboard to view, cancel, or update
-            reservations. You can also edit your profile and use EatSmart
-            seamlessly on mobile devices.
+            reservations.
           </p>
         </div>
       </GridWrapper>
