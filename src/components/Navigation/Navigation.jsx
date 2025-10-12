@@ -1,8 +1,11 @@
 import style from "./Navigation.module.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuClose from "../../assets/menu-close.svg";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
+import { Button } from "../Button/Button";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +27,11 @@ export const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const buttonType = isMobile ? "secondary" : "primary";
+
+  const navigate = useNavigate();
+
   return (
     <>
       <button className={style.menu} onClick={toggleMenu}>
@@ -37,6 +45,12 @@ export const Navigation = () => {
         <NavLink to={"/restaurants"} className={getClass}>
           Restaurants
         </NavLink>
+
+        <Button
+          type={buttonType}
+          text="Log In"
+          onClick={() => navigate("/login")}
+        />
       </nav>
     </>
   );

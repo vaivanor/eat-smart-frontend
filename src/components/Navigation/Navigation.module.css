@@ -8,7 +8,7 @@
   color: white;
 }
 .container a:hover {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 @media (min-width: 768px) {
   .container a {
@@ -25,13 +25,14 @@
 @media (min-width: 768px) {
   .container {
     display: flex;
+    align-items: center;
     background-color: white;
   }
 }
 
 .menu {
   padding: 1rem;
-  border-radius: 50%;
+  border-radius: 2rem;
   border: none;
   background-color: transparent;
 }
