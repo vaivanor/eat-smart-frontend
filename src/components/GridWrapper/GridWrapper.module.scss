@@ -1,0 +1,39 @@
+@use "../../styles/variables" as *;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 3rem $padding-base;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(var(--columns), 1fr);
+    padding: 2rem 3rem;
+    gap: 2rem;
+  }
+  @media (min-width: 1200px) {
+    padding: 3rem 6rem;
+  }
+  img {
+    width: 4rem;
+  }
+}
+
+.left {
+  align-items: baseline;
+  justify-items: left;
+  text-align: left;
+}
+
+.center {
+  align-items: baseline;
+  justify-items: center;
+  text-align: center;
+}
+.light {
+  background-color: $light-color;
+  color: $primary-color;
+}
+.dark {
+  background-color: $primary-color;
+  color: $light-color;
+}
