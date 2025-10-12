@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+
+.button {
+  border: none;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  color: $primary-color;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: $accent-color;
+  &:hover {
+    background-color: $accent-hover-color;
+  }
+}
+
+.secondary {
+  background-color: $light-color;
+  &:hover {
+    background-color: $light-color-hover;
+  }
+}

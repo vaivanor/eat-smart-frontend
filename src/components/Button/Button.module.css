@@ -1,0 +1,22 @@
+.button {
+  border: none;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  color: #1c2632;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #feb161;
+}
+.primary:hover {
+  background-color: #e2944d;
+}
+
+.secondary {
+  background-color: white;
+}
+.secondary:hover {
+  background-color: #fdf6e3;
+}/*# sourceMappingURL=Button.module.css.map */
