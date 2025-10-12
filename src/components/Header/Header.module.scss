@@ -1,11 +1,17 @@
 @use "../../styles/variables" as *;
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   padding: 0.5rem $padding-base;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 1px 1px 1px #d5d3cf;
+  background-color: $light-color;
   .img {
     width: 10rem;
   }
