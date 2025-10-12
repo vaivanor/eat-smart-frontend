@@ -29,4 +29,7 @@
   .container {
     padding: 6rem 6rem;
   }
+}
+.container button {
+  margin-right: 1rem;
 }/*# sourceMappingURL=BackgroundWrapper.module.css.map */

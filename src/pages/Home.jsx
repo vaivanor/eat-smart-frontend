@@ -15,17 +15,21 @@ export const Home = () => {
     <PageWrapper>
       <BackgroundWrapper src={landingBg}>
         <div>
-          <h1>Smart dining starts here.</h1>
+          <h1>Smart dining starts here</h1>
           <p>
-            EatSmart helps you find the best restaurants, book your table in
-            seconds, and share your experience with others. Join the smart
-            dining revolution!
+            Eatsmart helps you book a table in the finest restaurants and share
+            experience with others? Join the smart dining revolution!
           </p>
         </div>
         <Button
           type="secondary"
           text="Explore Restaurants"
           onClick={() => navigate("/restaurants")}
+        />
+        <Button
+          type="primary"
+          text="Sign In"
+          onClick={() => navigate("/sign-in")}
         />
       </BackgroundWrapper>
       <GridWrapper columns={3} type="center" typeTheme="light">
@@ -82,7 +86,7 @@ export const Home = () => {
           <Button
             type="primary"
             text="Sign Up"
-            onClick={() => navigate("/sing-up")}
+            onClick={() => navigate("/sign-up")}
           />
         </div>
       </BackgroundWrapper>
