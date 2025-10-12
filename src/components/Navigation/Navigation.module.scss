@@ -45,14 +45,28 @@
 
 .open {
   position: fixed;
-  top: 4rem;
+  top: 4.2rem;
   left: 0;
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
+  z-index: 999;
+  animation: fadeInMenu 0.3s ease-in-out forwards;
   @media (min-width: 760px) {
     display: none;
+  }
+}
+
+@keyframes fadeInMenu {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
