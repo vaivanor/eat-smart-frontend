@@ -6,6 +6,10 @@ import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
 import { Button } from "../components/Button/Button.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
+import cityIcon from "../assets/icons/city.svg";
+import cuisineIcon from "../assets/icons/cuisine.svg";
+import rateIcon from "../assets/icons/rate.svg";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -40,6 +44,28 @@ export const Restaurant = () => {
               <h1>{restaurant.name}</h1>
               <p>{restaurant.description}</p>
             </div>
+            <div style={{ marginBottom: "1rem" }}>
+              <InfoRow
+                icon={cityIcon}
+                text={restaurant.city}
+                alt="City icon."
+              />
+              <InfoRow
+                icon={rateIcon}
+                text={
+                  restaurant.averageRating > 0
+                    ? `${restaurant.averageRating}/5`
+                    : "No reviews yet"
+                }
+                alt="Rate icon."
+              />
+              <InfoRow
+                icon={cuisineIcon}
+                text={restaurant.cuisine.join(", ")}
+                alt="Cuisine icon."
+              />
+            </div>
+
             <div>
               <Button
                 type="primary"
@@ -50,7 +76,44 @@ export const Restaurant = () => {
               />
             </div>
           </BackgroundWrapper>
-          <GridWrapper></GridWrapper>
+          <GridWrapper columns={1}>
+            <div>
+              <InfoRow
+                icon={cityIcon}
+                text="Opening hours:"
+                alt="Adress icon."
+              />
+              <div>
+                {Object.entries(restaurant.workingHours).map(([day, hours]) => (
+                  <p key={day}>
+                    <b>{day}</b>: {hours.from} - {hours.to}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div>
+              <InfoRow
+                icon={cityIcon}
+                text={restaurant.address}
+                alt="Adress icon."
+              />
+              <InfoRow
+                icon={cityIcon}
+                text={<a href={restaurant.link}>{restaurant.link}</a>}
+                alt="Website link icon."
+              />
+              <InfoRow
+                icon={cityIcon}
+                text={restaurant.phone}
+                alt="Phone icon."
+              />
+              <InfoRow
+                icon={cityIcon}
+                text={<a href={restaurant.email}>{restaurant.email}</a>}
+                alt="Email icon."
+              />
+            </div>
+          </GridWrapper>
         </>
       )}
     </PageWrapper>
