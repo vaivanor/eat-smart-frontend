@@ -7,9 +7,14 @@ import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWra
 import { Button } from "../components/Button/Button.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
-import cityIcon from "../assets/icons/city.svg";
-import cuisineIcon from "../assets/icons/cuisine.svg";
-import rateIcon from "../assets/icons/rate.svg";
+import cityIcon from "../assets/icons/city-light.svg";
+import cuisineIcon from "../assets/icons/cuisine-light.svg";
+import rateIcon from "../assets/icons/rate-light.svg";
+import calendarIcon from "../assets/icons/calendar.svg";
+import mapIcon from "../assets/icons/map.svg";
+import phoneIcon from "../assets/icons/phone.svg";
+import emailIcon from "../assets/icons/email.svg";
+import linkIcon from "../assets/icons/link.svg";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -17,6 +22,7 @@ export const Restaurant = () => {
 
   const [restaurant, setRestaurant] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [columns, setColumns] = useState(1);
 
   useEffect(() => {
     fetchData({
@@ -32,6 +38,15 @@ export const Restaurant = () => {
       },
     });
   }, [restaurantId]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(window.innerWidth >= 768 ? 2 : 1);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <PageWrapper>
@@ -76,12 +91,12 @@ export const Restaurant = () => {
               />
             </div>
           </BackgroundWrapper>
-          <GridWrapper columns={1}>
+          <GridWrapper columns={columns}>
             <div>
               <InfoRow
-                icon={cityIcon}
+                icon={calendarIcon}
                 text="Opening hours:"
-                alt="Adress icon."
+                alt="Calendar icon."
               />
               <div>
                 {Object.entries(restaurant.workingHours).map(([day, hours]) => (
@@ -93,22 +108,22 @@ export const Restaurant = () => {
             </div>
             <div>
               <InfoRow
-                icon={cityIcon}
+                icon={mapIcon}
                 text={restaurant.address}
                 alt="Adress icon."
               />
               <InfoRow
-                icon={cityIcon}
+                icon={linkIcon}
                 text={<a href={restaurant.link}>{restaurant.link}</a>}
                 alt="Website link icon."
               />
               <InfoRow
-                icon={cityIcon}
+                icon={phoneIcon}
                 text={restaurant.phone}
                 alt="Phone icon."
               />
               <InfoRow
-                icon={cityIcon}
+                icon={emailIcon}
                 text={<a href={restaurant.email}>{restaurant.email}</a>}
                 alt="Email icon."
               />
