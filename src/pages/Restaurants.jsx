@@ -50,6 +50,7 @@ export const Restaurants = () => {
           {restaurants.map((restaurant) => (
             <Card
               key={restaurant._id}
+              id={restaurant._id}
               name={restaurant.name}
               city={restaurant.city}
               cuisine={restaurant.cuisine}

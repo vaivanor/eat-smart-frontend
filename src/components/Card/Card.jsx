@@ -5,7 +5,7 @@ import rateIcon from "../../assets/icons/rate.svg";
 import { Button } from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ name, city, cuisine, photo, averageRating }) => {
+export const Card = ({ id, name, city, cuisine, photo, averageRating }) => {
   const navigate = useNavigate();
   return (
     <div className={style.container}>
@@ -31,7 +31,11 @@ export const Card = ({ name, city, cuisine, photo, averageRating }) => {
         <Button
           type="primary"
           text="View Details"
-          onClick={() => navigate("/restaurant")}
+          onClick={() =>
+            navigate(`/restaurants/${encodeURIComponent(name.toLowerCase())}`, {
+              state: { id },
+            })
+          }
         />
       </div>
     </div>
