@@ -2,8 +2,8 @@
 
 .button {
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
+  padding: $space-base $space-s;
+  border-radius: $space-s;
   color: $primary-color;
   font-weight: 600;
   cursor: pointer;

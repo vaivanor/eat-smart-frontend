@@ -3,17 +3,17 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 3rem $padding-base;
+  gap: $space-base;
+  padding: $space-m $space-base;
   @media (min-width: 768px) {
     grid-template-columns: repeat(var(--columns), 1fr);
-    padding: 2rem 3rem;
+    padding: $space-s $space-m;
   }
   @media (min-width: 1200px) {
-    padding: 3rem 6rem;
+    padding: $space-m $space-xl;
   }
   img {
-    width: 4rem;
+    width: $space-l;
   }
 }
 

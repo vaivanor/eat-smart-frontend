@@ -5,7 +5,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3rem 1rem;
+  padding: $space-s $space-base;
   overflow: hidden;
   color: $light-color;
   background-color: $primary-color;
@@ -22,12 +22,12 @@
     z-index: 1;
   }
   @media (min-width: 768px) {
-    padding: 4rem 3rem;
+    padding: $space-l $space-m;
   }
   @media (min-width: 1200px) {
-    padding: 6rem 6rem;
+    padding: $space-xl;
   }
   button {
-    margin-right: 1rem;
+    margin-right: $space-base;
   }
 }

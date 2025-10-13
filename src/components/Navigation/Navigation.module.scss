@@ -2,7 +2,7 @@
 
 .container {
   display: none;
-  gap: $padding-min;
+  gap: $space-s;
   background-color: $primary-color;
   a {
     text-decoration: none;
@@ -29,16 +29,16 @@
 }
 
 .menu {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 2rem;
+  width: $space-m;
+  height: $space-m;
+  border-radius: $space-s;
   border: none;
   background-color: transparent;
   &:hover {
     background-color: $light-color-hover;
   }
   .img {
-    width: 1rem;
+    width: $space-base;
   }
   @media (min-width: 760px) {
     display: none;
@@ -47,14 +47,14 @@
 
 .open {
   position: fixed;
-  top: 4rem;
+  top: $space-l;
   left: 0;
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
+  padding: $space-s 0;
   z-index: 999;
   animation: fadeInMenu 0.3s ease-in-out forwards;
   @media (min-width: 760px) {

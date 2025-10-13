@@ -3,10 +3,10 @@
 .container {
   background-color: $primary-color;
   color: $light-color;
-  padding: $padding-base;
+  padding: $space-base;
   display: flex;
   flex-direction: column;
-  gap: $padding-base;
+  gap: $space-base;
   a {
     margin: 0;
     color: $light-color;
@@ -29,16 +29,16 @@
 .flexContainer {
   display: flex;
   flex-direction: column;
-  gap: $padding-base;
+  gap: $space-base;
   @media (min-width: 768px) {
     flex-direction: row;
-    gap: 5rem;
+    gap: $space-xl;
   }
 }
 
 .block {
   display: flex;
   align-items: center;
-  gap: $padding-base;
-  padding-bottom: $padding-base;
+  gap: $space-base;
+  padding-bottom: $space-base;
 }
