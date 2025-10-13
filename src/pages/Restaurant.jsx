@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchData } from "../utils/fetchData.js";
 import { Loader } from "../components/Loader/Loader.jsx";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
@@ -15,9 +16,12 @@ import mapIcon from "../assets/icons/map.svg";
 import phoneIcon from "../assets/icons/phone.svg";
 import emailIcon from "../assets/icons/email.svg";
 import linkIcon from "../assets/icons/link.svg";
+import backArrow from "../assets/icons/arrow.svg";
+import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
 
 export const Restaurant = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const restaurantId = location.state?.id;
 
   const [restaurant, setRestaurant] = useState(null);
@@ -54,6 +58,13 @@ export const Restaurant = () => {
         <Loader />
       ) : (
         <>
+          <GridWrapper>
+            <ImageButton
+              src={backArrow}
+              alt="Back arrow icon."
+              onClick={() => navigate("/restaurants")}
+            />
+          </GridWrapper>
           <BackgroundWrapper src={`/assets/restaurants/${restaurant.photo}`}>
             <div>
               <h1>{restaurant.name}</h1>
@@ -91,6 +102,7 @@ export const Restaurant = () => {
               />
             </div>
           </BackgroundWrapper>
+
           <GridWrapper columns={columns}>
             <div>
               <InfoRow
