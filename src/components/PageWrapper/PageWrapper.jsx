@@ -1,4 +1,4 @@
-import style from "./PageWrapper.module.css";
+import style from "./PageWrapper.module.scss";
 import { Footer } from "../Footer/Footer.jsx";
 import { Header } from "../Header/Header.jsx";
 
