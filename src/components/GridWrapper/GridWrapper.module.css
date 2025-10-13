@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
 }
 @media (min-width: 768px) {
   .container {
@@ -12,7 +12,7 @@
 }
 @media (min-width: 1200px) {
   .container {
-    padding: 3rem 6rem;
+    padding: 2rem 6rem;
   }
 }
 .container img {

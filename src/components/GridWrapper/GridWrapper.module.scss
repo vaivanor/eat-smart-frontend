@@ -4,13 +4,13 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-base;
-  padding: $space-s $space-base;
+  padding: $space-base $space-base;
   @media (min-width: 768px) {
     grid-template-columns: repeat(var(--columns), 1fr);
     padding: $space-s $space-m;
   }
   @media (min-width: 1200px) {
-    padding: $space-m $space-xl;
+    padding: $space-s $space-xl;
   }
   img {
     width: $space-l;

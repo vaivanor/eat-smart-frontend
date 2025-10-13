@@ -34,17 +34,17 @@ export const Home = () => {
       </BackgroundWrapper>
       <GridWrapper columns={3} type="center" typeTheme="light">
         <div>
-          <img src={clock} alt="Clock icon." />
+          <img src={clock} style={{ paddingTop: "1rem" }} alt="Clock icon." />
           <h2>Quick Reservations</h2>
           <p>Book your table instantly - no calls, no waiting.</p>
         </div>
         <div>
-          <img src={person} alt="Person icon." />
+          <img src={person} style={{ paddingTop: "1rem" }} alt="Person icon." />
           <h2>Personal Dashboard</h2>
           <p>Manage your bookings and profile in one place.</p>
         </div>
         <div>
-          <img src={mobile} alt="Mobile icon." />
+          <img src={mobile} style={{ paddingTop: "1rem" }} alt="Mobile icon." />
           <h2>Mobile-Friendly</h2>
           <p>
             Enjoy a smooth experience on any device - phone, tablet or desktop.
