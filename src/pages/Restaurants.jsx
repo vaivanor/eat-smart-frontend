@@ -6,6 +6,7 @@ import { Loader } from "../components/Loader/Loader.jsx";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../store/AppContext.jsx";
 import { fetchData } from "../utils/fetchData.js";
+import { Card } from "../components/Card/Card.jsx";
 
 export const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -33,19 +34,21 @@ export const Restaurants = () => {
         </div>
       </BackgroundWrapper>
       <GridWrapper columns={1}>
-        <div>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div>
-              {restaurants.map((restaurant) => (
-                <div key={restaurant._id}>
-                  <h3>{restaurant.name}</h3>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div>
+            {restaurants.map((restaurant) => (
+              <Card
+                key={restaurant._id}
+                name={restaurant.name}
+                city={restaurant.city}
+                cuisine={restaurant.cuisine}
+                photo={restaurant.photo}
+              />
+            ))}
+          </div>
+        )}
       </GridWrapper>
     </PageWrapper>
   );
