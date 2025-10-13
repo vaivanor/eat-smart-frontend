@@ -11,6 +11,7 @@ import { Card } from "../components/Card/Card.jsx";
 export const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const { isLoading, setIsLoading } = useAppContext();
+  const [columns, setColumns] = useState(1);
 
   useEffect(() => {
     fetchData({
@@ -26,6 +27,15 @@ export const Restaurants = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(window.innerWidth >= 1600 ? 2 : 1);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -33,23 +43,21 @@ export const Restaurants = () => {
           <h1>Restaurants</h1>
         </div>
       </BackgroundWrapper>
-      <GridWrapper columns={1}>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <div>
-            {restaurants.map((restaurant) => (
-              <Card
-                key={restaurant._id}
-                name={restaurant.name}
-                city={restaurant.city}
-                cuisine={restaurant.cuisine}
-                photo={restaurant.photo}
-              />
-            ))}
-          </div>
-        )}
-      </GridWrapper>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <GridWrapper columns={columns}>
+          {restaurants.map((restaurant) => (
+            <Card
+              key={restaurant._id}
+              name={restaurant.name}
+              city={restaurant.city}
+              cuisine={restaurant.cuisine}
+              photo={restaurant.photo}
+            />
+          ))}
+        </GridWrapper>
+      )}
     </PageWrapper>
   );
 };
