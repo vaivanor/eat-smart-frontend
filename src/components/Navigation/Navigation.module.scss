@@ -29,18 +29,17 @@
 }
 
 .menu {
-  width: $space-m;
-  height: $space-m;
   border-radius: $space-s;
   border: none;
   background-color: transparent;
+  cursor: pointer;
   &:hover {
-    background-color: $light-color-hover;
+    opacity: 0.7;
   }
   .img {
     width: $space-base;
   }
-  @media (min-width: 760px) {
+  @media (min-width: 768px) {
     display: none;
   }
 }

@@ -27,7 +27,7 @@ export const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
-  const isMobile = useMediaQuery({ maxWidth: 760 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const buttonType = isMobile ? "secondary" : "primary";
 
   const navigate = useNavigate();
