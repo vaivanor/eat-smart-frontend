@@ -54,6 +54,7 @@ export const Restaurants = () => {
               city={restaurant.city}
               cuisine={restaurant.cuisine}
               photo={restaurant.photo}
+              averageRating={restaurant.averageRating}
             />
           ))}
         </GridWrapper>

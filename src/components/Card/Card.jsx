@@ -5,7 +5,7 @@ import rateIcon from "../../assets/icons/rate.svg";
 import { Button } from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ name, city, cuisine, photo }) => {
+export const Card = ({ name, city, cuisine, photo, averageRating }) => {
   const navigate = useNavigate();
   return (
     <div className={style.container}>
@@ -20,7 +20,7 @@ export const Card = ({ name, city, cuisine, photo }) => {
         </div>
         <div className={style.flexContainer}>
           <img src={rateIcon} alt="Rate icon." />
-          <p>/10</p>
+          <p>{averageRating > 0 ? `${averageRating}/5` : "No reviews yet"}</p>
         </div>
         <div className={style.flexContainer}>
           <img src={cuisineIcon} alt="Cuisine icon." />
