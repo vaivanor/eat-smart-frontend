@@ -1,0 +1,14 @@
+@use "../../styles/variables" as *;
+
+.button {
+  border-radius: $space-s;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+  img {
+    width: 0.75rem;
+  }
+}
