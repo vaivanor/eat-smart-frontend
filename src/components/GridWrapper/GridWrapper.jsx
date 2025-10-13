@@ -1,4 +1,4 @@
-import style from "./GridWrapper.module.css";
+import style from "./GridWrapper.module.scss";
 import { useMemo } from "react";
 
 export const GridWrapper = ({ children, type, typeTheme, columns = 2 }) => {

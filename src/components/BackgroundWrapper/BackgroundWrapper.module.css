@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
   overflow: hidden;
   color: white;
   background-color: #1c2632;
@@ -27,7 +27,7 @@
 }
 @media (min-width: 1200px) {
   .container {
-    padding: 6rem 6rem;
+    padding: 6rem;
   }
 }
 .container button {
