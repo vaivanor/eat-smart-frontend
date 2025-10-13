@@ -1,0 +1,12 @@
+@use "../../styles/variables" as *;
+
+.container {
+  display: flex;
+  gap: $space-xs;
+  img {
+    width: $icon-width-base;
+  }
+  p {
+    margin: $space-base 0;
+  }
+}

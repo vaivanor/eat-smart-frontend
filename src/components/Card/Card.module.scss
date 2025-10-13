@@ -37,16 +37,6 @@
   }
   .contentContainer {
     padding: $space-base;
-    .flexContainer {
-      display: flex;
-      gap: $space-xs;
-      img {
-        width: $icon-width-base;
-      }
-      p {
-        margin: $space-base 0;
-      }
-    }
   }
   .buttonContainer {
     padding: $space-base;

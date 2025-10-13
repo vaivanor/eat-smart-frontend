@@ -3,6 +3,7 @@ import cityIcon from "../../assets/icons/city.svg";
 import cuisineIcon from "../../assets/icons/cuisine.svg";
 import rateIcon from "../../assets/icons/rate.svg";
 import { Button } from "../Button/Button";
+import { InfoRow } from "../InfoRow/InfoRow";
 import { useNavigate } from "react-router-dom";
 
 export const Card = ({ id, name, city, cuisine, photo, averageRating }) => {
@@ -14,18 +15,17 @@ export const Card = ({ id, name, city, cuisine, photo, averageRating }) => {
       </div>
       <div className={style.contentContainer}>
         <h3>{name}</h3>
-        <div className={style.flexContainer}>
-          <img src={cityIcon} alt="City icon." />
-          <p>{city}</p>
-        </div>
-        <div className={style.flexContainer}>
-          <img src={rateIcon} alt="Rate icon." />
-          <p>{averageRating > 0 ? `${averageRating}/5` : "No reviews yet"}</p>
-        </div>
-        <div className={style.flexContainer}>
-          <img src={cuisineIcon} alt="Cuisine icon." />
-          <p>{cuisine.join(", ")}</p>
-        </div>
+        <InfoRow icon={cityIcon} text={city} alt="City icon." />
+        <InfoRow
+          icon={rateIcon}
+          text={averageRating > 0 ? `${averageRating}/5` : "No reviews yet"}
+          alt="Rate icon."
+        />
+        <InfoRow
+          icon={cuisineIcon}
+          text={cuisine.join(", ")}
+          alt="Cuisine icon."
+        />
       </div>
       <div className={style.buttonContainer}>
         <Button

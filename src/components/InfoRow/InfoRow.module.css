@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+}
+.container img {
+  width: 2rem;
+}
+.container p {
+  margin: 1rem 0;
+}/*# sourceMappingURL=InfoRow.module.css.map */
