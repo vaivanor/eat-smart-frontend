@@ -1,0 +1,35 @@
+@use "../../styles/variables" as *;
+
+.container {
+  box-shadow: 0px 1px 3px #d5d3cf;
+  border-radius: $space-xs;
+  margin-bottom: $space-s;
+  h3 {
+    margin: $space-base 0;
+  }
+  .imgContainer {
+    img {
+      border-top-left-radius: $space-xs;
+      border-top-right-radius: $space-xs;
+      width: 100%;
+    }
+  }
+  .contentContainer {
+    padding: $space-base;
+    .flexContainer {
+      display: flex;
+      gap: $space-xs;
+      img {
+        width: $icon-width-base;
+      }
+      p {
+        margin: $space-base 0;
+      }
+    }
+  }
+  .buttonContainer {
+    padding: $space-base;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
