@@ -3,16 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuClose from "../../assets/menu-close.svg";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../../store/AppContext";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "../Button/Button";
+import { useMenu } from "../../utils/useMenu.js";
 
 export const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, toggleMenu, closeMenu } = useMenu();
   const { isLoggedIn, handleLogout } = useAppContext();
-
-  const toggleMenu = () => setIsOpen(!isOpen);
 
   const getClass = ({ isActive }) => {
     return isActive ? style.active : "";
@@ -21,7 +20,7 @@ export const Navigation = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768 && isOpen) {
-        setIsOpen(false);
+        closeMenu();
       }
     };
 
@@ -34,9 +33,19 @@ export const Navigation = () => {
 
   const navigate = useNavigate();
 
+  const handleLogoutAndCloseMenu = async () => {
+    await handleLogout();
+    closeMenu();
+    navigate("/");
+  };
+
   return (
     <>
-      <button className={style.menu} onClick={toggleMenu}>
+      <button
+        className={style.menu}
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+      >
         <img className={style.img} src={isOpen ? menuClose : menu} alt="Menu" />
       </button>
 
@@ -58,7 +67,11 @@ export const Navigation = () => {
           </NavLink>
         )}
         {isLoggedIn ? (
-          <Button type="secondary" text="Sign Out" onClick={handleLogout} />
+          <Button
+            type="secondary"
+            text="Sign Out"
+            onClick={handleLogoutAndCloseMenu}
+          />
         ) : (
           <Button
             type={buttonType}
