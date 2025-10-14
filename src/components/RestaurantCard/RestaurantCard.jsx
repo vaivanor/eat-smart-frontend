@@ -1,4 +1,4 @@
-import style from "./Card.module.scss";
+import style from "./RestaurantCard.module.scss";
 import cityIcon from "../../assets/icons/city.svg";
 import cuisineIcon from "../../assets/icons/cuisine.svg";
 import rateIcon from "../../assets/icons/rate.svg";
@@ -6,7 +6,14 @@ import { Button } from "../Button/Button";
 import { InfoRow } from "../InfoRow/InfoRow";
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ id, name, city, cuisine, photo, averageRating }) => {
+export const RestaurantCard = ({
+  id,
+  name,
+  city,
+  cuisine,
+  photo,
+  averageRating,
+}) => {
   const navigate = useNavigate();
   return (
     <div className={style.container}>
