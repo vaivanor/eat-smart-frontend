@@ -4,12 +4,15 @@ import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { useAppContext } from "../store/AppContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "../utils/useModal.js";
+import { Modal } from "../components/Modal/Modal.jsx";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setIsLoading, handleLogin } = useAppContext();
   const navigate = useNavigate();
+  const { isOpen, modalProps, showModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,13 +26,27 @@ export const SignIn = () => {
         if (result.success) {
           handleLogin(result.accessToken);
           navigate("/");
+          // showModal({
+          //   text: "Prisijungimas sėkmingas!",
+          //   confirmText: "Tęsti",
+          //   onConfirm: () => {
+          //     handleLogin(result.accessToken);
+          //     navigate("/");
+          //   },
+          // });
         } else {
-          alert(result.message);
+          //klaidu tikrinimas
+          console.log(result.message);
         }
       },
       onError: (error) => {
-        console.error("Login error:", error);
-        alert("Error");
+        showModal({
+          text: error,
+          confirmText: "Try Again",
+          onConfirm: () => {
+            navigate("/sign-in");
+          },
+        });
       },
     });
   };
@@ -58,6 +75,8 @@ export const SignIn = () => {
         </div>
         <Button text="Submit" type="primary" />
       </form>
+
+      <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
   );
 };

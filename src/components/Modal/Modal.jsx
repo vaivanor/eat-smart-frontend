@@ -2,12 +2,14 @@ import { Button } from "../Button/Button.jsx";
 import style from "./Modal.module.scss";
 
 export const Modal = ({
+  isOpen,
   text,
   confirmText = "Ok",
   cancelText,
   onConfirm,
   onCancel,
 }) => {
+  if (!isOpen) return null;
   return (
     <div className={style.container}>
       <div className={style.info}>

@@ -4,6 +4,11 @@ export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState({});
 
+  const hideModal = () => {
+    setIsOpen(false);
+    setModalProps({});
+  };
+
   const showModal = ({
     text,
     confirmText,
@@ -11,19 +16,25 @@ export const useModal = () => {
     onConfirm,
     onCancel,
   }) => {
+    const wrappedOnConfirm = async () => {
+      if (onConfirm) await onConfirm();
+      hideModal();
+    };
+
+    const wrappedOnCancel = async () => {
+      if (onCancel) await onCancel();
+      hideModal();
+    };
+
     setModalProps({
       text,
       confirmText,
       cancelText,
-      onConfirm,
-      onCancel,
+      onConfirm: wrappedOnConfirm,
+      onCancel: wrappedOnCancel,
     });
-    setIsOpen(true);
-  };
 
-  const hideModal = () => {
-    setIsOpen(false);
-    setModalProps({});
+    setIsOpen(true);
   };
 
   return {
