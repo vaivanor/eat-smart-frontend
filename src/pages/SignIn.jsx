@@ -3,11 +3,13 @@ import { Button } from "../components/Button/Button.jsx";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { useAppContext } from "../store/AppContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setIsLoading, handleLogin } = useAppContext();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export const SignIn = () => {
       onSuccess: (result) => {
         if (result.success) {
           handleLogin(result.accessToken);
-          alert("Ok");
+          navigate("/");
         } else {
           alert(result.message);
         }

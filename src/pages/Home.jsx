@@ -8,9 +8,11 @@ import mobile from "../assets/icons/mobile.svg";
 import { Button } from "../components/Button/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { useAppContext } from "../store/AppContext.jsx";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAppContext();
   return (
     <PageWrapper>
       <BackgroundWrapper src={landingBg}>
@@ -26,11 +28,13 @@ export const Home = () => {
           text="Explore Restaurants"
           onClick={() => navigate("/restaurants")}
         />
-        <Button
-          type="primary"
-          text="Sign In"
-          onClick={() => navigate("/sign-in")}
-        />
+        {!isLoggedIn && (
+          <Button
+            type="primary"
+            text="Sign In"
+            onClick={() => navigate("/sign-in")}
+          />
+        )}
       </BackgroundWrapper>
       <GridWrapper columns={3} type="center" typeTheme="light">
         <div>
@@ -78,17 +82,21 @@ export const Home = () => {
       </GridWrapper>
 
       <BackgroundWrapper src={bg}>
-        <div>
-          <h2>Not a member yet?</h2>
-          <p>Sign Up now and start reserving smarter.</p>
-        </div>
-        <div>
-          <Button
-            type="primary"
-            text="Sign Up"
-            onClick={() => navigate("/sign-up")}
-          />
-        </div>
+        {!isLoggedIn && (
+          <>
+            <div>
+              <h2>Not a member yet?</h2>
+              <p>Sign Up now and start reserving smarter.</p>
+            </div>
+            <div>
+              <Button
+                type="primary"
+                text="Sign Up"
+                onClick={() => navigate("/sign-up")}
+              />
+            </div>
+          </>
+        )}
       </BackgroundWrapper>
     </PageWrapper>
   );

@@ -47,7 +47,16 @@ export const Navigation = () => {
         <NavLink to={"/restaurants"} className={getClass}>
           Restaurants
         </NavLink>
-
+        {isLoggedIn && (
+          <NavLink to={"/reservations"} className={getClass}>
+            Reservations
+          </NavLink>
+        )}
+        {isLoggedIn && (
+          <NavLink to={"/profile"} className={getClass}>
+            Profile
+          </NavLink>
+        )}
         {isLoggedIn ? (
           <Button type="secondary" text="Sign Out" onClick={handleLogout} />
         ) : (

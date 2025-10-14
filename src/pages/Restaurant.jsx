@@ -18,6 +18,8 @@ import linkIcon from "../assets/icons/link.svg";
 import backArrow from "../assets/icons/arrow.svg";
 import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
 import { CommentCard } from "../components/CommentCard/CommentCard.jsx";
+import { useAppContext } from "../store/AppContext.jsx";
+import { Button } from "../components/Button/Button.jsx";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -28,6 +30,7 @@ export const Restaurant = () => {
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [columns, setColumns] = useState(1);
+  const { isLoggedIn } = useAppContext();
 
   useEffect(() => {
     const fetchRestaurantAndComments = async () => {
@@ -106,6 +109,20 @@ export const Restaurant = () => {
                 alt="Cuisine icon."
               />
             </div>
+            {isLoggedIn && (
+              <>
+                <Button
+                  type="primary"
+                  text="Reserve"
+                  onClick={() => navigate("/reserve")}
+                ></Button>
+                <Button
+                  type="secondary"
+                  text="Leave a Comment"
+                  onClick={() => navigate("/comment")}
+                ></Button>
+              </>
+            )}
           </BackgroundWrapper>
 
           <GridWrapper columns={columns}>
