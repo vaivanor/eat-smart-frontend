@@ -1,0 +1,26 @@
+@use "../../styles/variables" as *;
+
+.container {
+  padding: 0 $space-base;
+  background-color: $light-color;
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: 0px 1px 3px #d5d3cf;
+  border-radius: $space-xs;
+  margin-bottom: $space-xs;
+
+  h3,
+  p {
+    margin: $space-base 0;
+  }
+
+  .buttonContainer {
+    padding: $space-base;
+    display: flex;
+    justify-content: flex-end;
+    @media (min-width: 768px) {
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

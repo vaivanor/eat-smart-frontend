@@ -5,7 +5,6 @@ import { fetchData } from "../utils/fetchData.js";
 import { Loader } from "../components/Loader/Loader.jsx";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
-import { Button } from "../components/Button/Button.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
 import cityIcon from "../assets/icons/city-light.svg";
@@ -18,6 +17,7 @@ import emailIcon from "../assets/icons/email.svg";
 import linkIcon from "../assets/icons/link.svg";
 import backArrow from "../assets/icons/arrow.svg";
 import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
+import { CommentCard } from "../components/CommentCard/CommentCard.jsx";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -25,22 +25,37 @@ export const Restaurant = () => {
   const restaurantId = location.state?.id;
 
   const [restaurant, setRestaurant] = useState(null);
+  const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [columns, setColumns] = useState(1);
 
   useEffect(() => {
-    fetchData({
-      endpoint: `/restaurant/${restaurantId}`,
-      method: "GET",
-      setIsLoading,
-      onSuccess: (result) => {
-        setRestaurant(result.data);
-      },
-      onError: (error) => {
-        console.error("Error:", error);
+    const fetchRestaurantAndComments = async () => {
+      try {
+        setIsLoading(true);
+
+        const restaurant = await fetchData({
+          endpoint: `/restaurant/${restaurantId}`,
+          method: "GET",
+        });
+
+        const comments = await fetchData({
+          endpoint: `/restaurant/${restaurantId}/comments`,
+          method: "GET",
+        });
+
+        setRestaurant(restaurant.data);
+        setComments(comments.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
         setIsLoading(false);
-      },
-    });
+      }
+    };
+
+    if (restaurantId) {
+      fetchRestaurantAndComments();
+    }
   }, [restaurantId]);
 
   useEffect(() => {
@@ -91,16 +106,6 @@ export const Restaurant = () => {
                 alt="Cuisine icon."
               />
             </div>
-
-            <div>
-              <Button
-                type="primary"
-                text="Reserve"
-                onClick={() =>
-                  navigate(`/restaurant/${restaurantId}/reservation`)
-                }
-              />
-            </div>
           </BackgroundWrapper>
 
           <GridWrapper columns={columns}>
@@ -140,6 +145,23 @@ export const Restaurant = () => {
                 alt="Email icon."
               />
             </div>
+          </GridWrapper>
+
+          <GridWrapper columns={1}>
+            <h2>Comments</h2>
+            {comments && comments.length > 0 ? (
+              comments.map((comment) => (
+                <CommentCard
+                  key={comment._id}
+                  name={comment.user[0].name}
+                  evaluation={comment.evaluation}
+                  comment={comment.comment}
+                  createdAt={comment.createdAt}
+                />
+              ))
+            ) : (
+              <p>No comments yet.</p>
+            )}
           </GridWrapper>
         </>
       )}
