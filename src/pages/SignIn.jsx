@@ -7,7 +7,7 @@ import { useAppContext } from "../store/AppContext.jsx";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoading } = useAppContext();
+  const { setIsLoading, handleLogin } = useAppContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export const SignIn = () => {
       setIsLoading,
       onSuccess: (result) => {
         if (result.success) {
-          localStorage.setItem("accessToken", result.accessToken);
+          handleLogin(result.accessToken);
           alert("Ok");
         } else {
           alert(result.message);
