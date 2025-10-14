@@ -1,3 +1,5 @@
+import { refreshAccessToken } from "./refreshAccessToken.js";
+
 export const fetchData = async ({
   endpoint,
   method = "GET",
@@ -7,6 +9,7 @@ export const fetchData = async ({
   onSuccess = () => {},
   onError = () => {},
   setIsLoading = () => {},
+  navigate = null,
 }) => {
   setIsLoading(true);
 
@@ -16,11 +19,33 @@ export const fetchData = async ({
   };
 
   try {
-    const response = await fetch(`http://localhost:3000${endpoint}`, {
+    let response = await fetch(`http://localhost:3000${endpoint}`, {
       method,
       headers: finalHeaders,
       body: body ? JSON.stringify(body) : null,
+      credentials: "include",
     });
+
+    if (response.status === 403) {
+      const newAccessToken = await refreshAccessToken();
+
+      if (newAccessToken) {
+        response = await fetch(`http://localhost:3000${endpoint}`, {
+          method,
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${newAccessToken}`,
+          },
+          body: body ? JSON.stringify(body) : null,
+          credentials: "include",
+        });
+      } else {
+        alert("Sign In again.");
+        if (navigate) {
+          navigate("/sign-in");
+        }
+      }
+    }
 
     const result = await response.json();
     onSuccess(result);
