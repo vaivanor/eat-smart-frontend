@@ -1,7 +1,7 @@
 import style from "./Button.module.scss";
 import { useMemo } from "react";
 
-export const Button = ({ type = "info", text, onClick }) => {
+export const Button = ({ type = "primary", text, onClick }) => {
   const typeClass = useMemo(() => {
     return {
       primary: style.primary,
