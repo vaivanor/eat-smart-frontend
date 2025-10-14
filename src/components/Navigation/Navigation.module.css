@@ -61,7 +61,7 @@
   z-index: 999;
   animation: fadeInMenu 0.3s ease-in-out forwards;
 }
-@media (min-width: 760px) {
+@media (min-width: 768px) {
   .open {
     display: none;
   }

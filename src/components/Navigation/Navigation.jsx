@@ -19,7 +19,7 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 768 && isOpen) {
+      if (window.innerWidth >= 768 && isOpen) {
         closeMenu();
       }
     };
