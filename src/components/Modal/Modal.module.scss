@@ -1,0 +1,39 @@
+@use "../../styles/variables" as *;
+
+.container {
+  display: block;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $overlay-color;
+  .info {
+    text-align: center;
+    background-color: $light-color;
+    color: $primary-color;
+    border-radius: $space-xs;
+    padding: $space-s;
+    margin: $space-s $space-base;
+    animation: slideIn 0.5s forwards;
+    opacity: 0;
+    @media (min-width: 768px) {
+      width: 25rem;
+      margin: $space-base auto;
+    }
+    transform: translateY(-1rem);
+    .buttonContainer {
+      display: flex;
+      justify-content: center;
+      gap: $space-base;
+    }
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(1rem);
+  }
+}
