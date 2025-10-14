@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuClose from "../../assets/menu-close.svg";
 import { useState, useEffect } from "react";
+import { useAppContext } from "../../store/AppContext";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "../Button/Button";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn, handleLogout } = useAppContext();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -46,11 +48,15 @@ export const Navigation = () => {
           Restaurants
         </NavLink>
 
-        <Button
-          type={buttonType}
-          text="Sign In"
-          onClick={() => navigate("/sign-in")}
-        />
+        {isLoggedIn ? (
+          <Button type="secondary" text="Sign Out" onClick={handleLogout} />
+        ) : (
+          <Button
+            type={buttonType}
+            text="Sign In"
+            onClick={() => navigate("/sign-in")}
+          />
+        )}
       </nav>
     </>
   );
