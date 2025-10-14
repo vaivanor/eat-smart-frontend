@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -29,6 +31,7 @@ export const AppProvider = ({ children }) => {
 
       localStorage.removeItem("accessToken");
       setIsLoggedIn(false);
+      navigate("/");
     } catch (error) {
       console.error("Logout error:", error);
     }
