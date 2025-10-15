@@ -8,10 +8,11 @@
   align-items: baseline;
   @media (min-width: 768px) {
     align-items: center;
+    margin: $space-l $space-s;
   }
   @media (min-width: 1200px) {
     justify-content: flex-end;
-    margin-right: $space-xl;
+    margin: $space-l $space-xl;
   }
 }
 
