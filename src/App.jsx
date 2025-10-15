@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { Restaurants } from "./pages/Restaurants";
 import { Restaurant } from "./pages/Restaurant";
 import { SignIn } from "./pages/SignIn";
+import { SignUp } from "./pages/SignUp";
 import { Profile } from "./pages/Profile";
 import { Reservations } from "./pages/Reservations";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
@@ -16,6 +17,7 @@ function App() {
         <Route Component={Restaurants} path="/restaurants" />
         <Route Component={Restaurant} path="/restaurants/:restaurantName" />
         <Route Component={SignIn} path="/sign-in" />
+        <Route Component={SignUp} path="/sign-up" />
 
         <Route
           element={
