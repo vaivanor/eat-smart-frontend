@@ -1,0 +1,25 @@
+@use "../../styles/variables" as *;
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: $space-base $space-s;
+  align-items: baseline;
+  @media (min-width: 768px) {
+    align-items: center;
+  }
+  @media (min-width: 1200px) {
+    justify-content: flex-end;
+    margin-right: $space-xl;
+  }
+}
+
+.container {
+  background-color: $light-color;
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: 0px 1px 3px #d5d3cf;
+  border-radius: $space-xs;
+  max-width: 35rem;
+}

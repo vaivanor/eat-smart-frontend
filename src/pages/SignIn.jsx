@@ -6,6 +6,9 @@ import { useAppContext } from "../store/AppContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
+import { Form } from "../components/Form/Form.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import bg from "../assets/background/bg.jpeg";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -44,29 +47,38 @@ export const SignIn = () => {
   };
 
   return (
-    <PageWrapper>
-      <form onSubmit={handleSubmit}>
-        <h2>Sign In</h2>
-        <div>
-          <label>Email:</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <Button text="Submit" type="primary" />
-      </form>
+    <PageWrapper backgroundSrc={bg}>
+      <Form>
+        <GridWrapper columns={1}>
+          <h2>Sign In</h2>
+        </GridWrapper>
+        <GridWrapper columns={1}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+        </GridWrapper>
+
+        <GridWrapper columns={1} type="center">
+          <div>
+            <Button text="Submit" type="primary" onClick={handleSubmit} />
+          </div>
+        </GridWrapper>
+      </Form>
 
       <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
