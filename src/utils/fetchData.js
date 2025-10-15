@@ -40,7 +40,6 @@ export const fetchData = async ({
           credentials: "include",
         });
       } else {
-        alert("Sign In again.");
         if (navigate) {
           navigate("/sign-in");
         }
