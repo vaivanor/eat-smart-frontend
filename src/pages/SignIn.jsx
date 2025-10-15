@@ -108,7 +108,7 @@ export const SignIn = () => {
           <div>
             <Button text="Sign In" type="primary" onClick={handleSubmit} />
           </div>
-          <p style={{ textAlign: "center" }}>
+          <p style={{ textAlign: "center", margin: "0.5rem" }}>
             Don't have an account?{" "}
             <StyledLink to="/sign-up">Sign Up</StyledLink>
           </p>
