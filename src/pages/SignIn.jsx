@@ -12,6 +12,7 @@ import bg from "../assets/background/bg-2.jpeg";
 import { Input } from "../components/Input/Input.jsx";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { validateFields } from "../utils/validateFields.js";
 
 const StyledLink = styled(Link)`
   color: #feb161;
@@ -23,12 +24,22 @@ const StyledLink = styled(Link)`
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const { setIsLoading, handleLogin } = useAppContext();
   const navigate = useNavigate();
   const { isOpen, modalProps, showModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationErrors = validateFields({ email, password });
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
 
     const result = await fetchData({
       endpoint: "/login",
@@ -40,8 +51,10 @@ export const SignIn = () => {
           handleLogin(result.accessToken);
           navigate("/");
         } else {
-          //klaidu tikrinimas
-          console.log(result.message);
+          setErrors({
+            email: "Incorrect email or password.",
+            password: "Incorrect email or password.",
+          });
         }
       },
       onError: (error) => {
@@ -66,16 +79,28 @@ export const SignIn = () => {
           <Input
             id="emailSignIn"
             label="Email"
-            type="text"
+            type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (errors.email) {
+                setErrors((prev) => ({ ...prev, email: "" }));
+              }
+            }}
+            error={errors.email}
           />
           <Input
             id="passwordSignIn"
             label="Password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (errors.password) {
+                setErrors((prev) => ({ ...prev, password: "" }));
+              }
+            }}
+            error={errors.password}
           />
         </GridWrapper>
 
