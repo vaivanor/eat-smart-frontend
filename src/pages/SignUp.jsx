@@ -114,7 +114,6 @@ export const SignUp = () => {
             label="Email"
             type="email"
             value={email}
-            placeholder="email@example.com"
             onChange={(e) => {
               setEmail(e.target.value);
               if (errors.email) {
@@ -128,7 +127,6 @@ export const SignUp = () => {
             label="Phone"
             type="phone"
             value={phone}
-            placeholder="e.g. +37061234567"
             onChange={(e) => {
               setPhone(e.target.value);
               if (errors.phone) {
