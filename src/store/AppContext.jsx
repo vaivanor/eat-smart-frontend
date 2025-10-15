@@ -1,21 +1,40 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchData } from "../utils/fetchData";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     setIsLoggedIn(!!token);
+
+    if (token) {
+      fetchData({
+        endpoint: "/profile",
+        token,
+        onSuccess: (result) => setCurrentUser(result.data),
+        onError: (error) =>
+          console.error("Failed to fetch user profile:", error),
+      });
+    }
   }, []);
 
   const handleLogin = (token) => {
     localStorage.setItem("accessToken", token);
     setIsLoggedIn(true);
+
+    fetchData({
+      endpoint: "/profile",
+      token,
+      onSuccess: (result) => setCurrentUser(result.data),
+      onError: (error) => console.error("Failed to fetch user profile:", error),
+    });
   };
 
   const handleLogout = async () => {
@@ -41,6 +60,7 @@ export const AppProvider = ({ children }) => {
     isLoading,
     setIsLoading,
     isLoggedIn,
+    currentUser,
     handleLogin,
     handleLogout,
   };
