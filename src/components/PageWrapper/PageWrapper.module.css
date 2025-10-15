@@ -6,7 +6,7 @@
 
 .mainContainer {
   flex: 1;
-  padding-top: 3.8rem;
+  padding-top: 4rem;
   display: flex;
   flex-direction: column;
 }
