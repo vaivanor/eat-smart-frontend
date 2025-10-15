@@ -26,23 +26,24 @@ export const fetchData = async ({
       credentials: "include",
     });
 
-    if (response.status === 403) {
+    if (response.status === 401) {
       const newAccessToken = await refreshAccessToken();
 
       if (newAccessToken) {
+        localStorage.setItem("accessToken", newAccessToken);
+
         response = await fetch(`http://localhost:3000${endpoint}`, {
           method,
           headers: {
-            ...headers,
+            ...finalHeaders,
             Authorization: `Bearer ${newAccessToken}`,
           },
           body: body ? JSON.stringify(body) : null,
           credentials: "include",
         });
       } else {
-        if (navigate) {
-          navigate("/sign-in");
-        }
+        if (navigate) navigate("/sign-in");
+        return null;
       }
     }
 
