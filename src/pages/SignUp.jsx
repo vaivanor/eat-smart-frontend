@@ -51,7 +51,13 @@ export const SignUp = () => {
       setIsLoading,
       onSuccess: (result) => {
         if (result.success) {
-          navigate("/sign-in");
+          showModal({
+            text: "Your account has been created. Please sign in to continue.",
+            confirmText: "Ok",
+            onConfirm: () => {
+              navigate("/sign-in");
+            },
+          });
         } else {
           if (result.message === "User with this email already exists.") {
             setErrors({ email: result.message });
@@ -122,7 +128,7 @@ export const SignUp = () => {
             label="Phone"
             type="phone"
             value={phone}
-            placeholder="e.g. +370XXXXXXXX"
+            placeholder="e.g. +37061234567"
             onChange={(e) => {
               setPhone(e.target.value);
               if (errors.phone) {
