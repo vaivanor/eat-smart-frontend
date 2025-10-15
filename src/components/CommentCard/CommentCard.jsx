@@ -8,10 +8,12 @@ import { useAppContext } from "../../store/AppContext";
 
 export const CommentCard = ({
   userId,
+  commentId,
   name,
   evaluation,
   comment,
   createdAt,
+  onDelete,
 }) => {
   const { currentUser } = useAppContext();
   const isAuthor = currentUser?._id === userId;
@@ -33,7 +35,11 @@ export const CommentCard = ({
       {isAuthor && (
         <div className={style.buttonContainer}>
           <ImageButton src={editIcon} alt="Edit icon." />
-          <ImageButton src={deleteIcon} alt="Delete icon." />
+          <ImageButton
+            src={deleteIcon}
+            alt="Delete icon."
+            onClick={() => onDelete(commentId)}
+          />
         </div>
       )}
     </div>
