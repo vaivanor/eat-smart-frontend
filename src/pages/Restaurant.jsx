@@ -50,7 +50,13 @@ export const Restaurant = () => {
         setRestaurant(restaurant.data);
         setComments(comments.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        showModal({
+          text: error,
+          confirmText: "Try again",
+          onConfirm: () => {
+            navigate("/");
+          },
+        });
       } finally {
         setIsLoading(false);
       }

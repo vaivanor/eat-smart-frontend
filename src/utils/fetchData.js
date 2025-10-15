@@ -51,7 +51,6 @@ export const fetchData = async ({
     onSuccess(result);
     return result;
   } catch (error) {
-    console.error("Fetch error:", error);
     onError(error);
     return null;
   } finally {

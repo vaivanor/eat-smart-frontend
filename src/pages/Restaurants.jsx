@@ -22,7 +22,13 @@ export const Restaurants = () => {
         setRestaurants(result.data);
       },
       onError: (error) => {
-        console.error("Error:", error);
+        showModal({
+          text: error,
+          confirmText: "Try again",
+          onConfirm: () => {
+            navigate("/");
+          },
+        });
       },
     });
   }, []);
