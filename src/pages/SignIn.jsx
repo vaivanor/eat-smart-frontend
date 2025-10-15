@@ -29,9 +29,13 @@ export const SignIn = () => {
           // showModal({
           //   text: "Prisijungimas sėkmingas!",
           //   confirmText: "Tęsti",
+          //   cancelText: "Cancel",
           //   onConfirm: () => {
           //     handleLogin(result.accessToken);
           //     navigate("/");
+          //   },
+          //   onCancel: () => {
+          //     console.log("cancel");
           //   },
           // });
         } else {

@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState({});
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isOpen) {
+        if (typeof modalProps.onCancel === "function") {
+          modalProps.onCancel();
+        } else if (typeof modalProps.onConfirm === "function") {
+          modalProps.onConfirm();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, modalProps]);
 
   const hideModal = () => {
     setIsOpen(false);
@@ -21,10 +36,12 @@ export const useModal = () => {
       hideModal();
     };
 
-    const wrappedOnCancel = async () => {
-      if (onCancel) await onCancel();
-      hideModal();
-    };
+    const wrappedOnCancel = onCancel
+      ? async () => {
+          await onCancel();
+          hideModal();
+        }
+      : undefined;
 
     setModalProps({
       text,

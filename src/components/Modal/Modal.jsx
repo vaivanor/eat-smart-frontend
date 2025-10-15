@@ -11,8 +11,17 @@ export const Modal = ({
 }) => {
   if (!isOpen) return null;
   return (
-    <div className={style.container}>
-      <div className={style.info}>
+    <div
+      className={style.container}
+      onClick={() => {
+        if (typeof onCancel === "function") {
+          onCancel();
+        } else if (typeof onConfirm === "function") {
+          onConfirm();
+        }
+      }}
+    >
+      <div className={style.info} onClick={(e) => e.stopPropagation()}>
         <p>{text}</p>
         <div className={style.buttonContainer}>
           {cancelText && (
