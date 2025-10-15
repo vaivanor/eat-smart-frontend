@@ -47,13 +47,15 @@ export const SignUp = () => {
     const result = await fetchData({
       endpoint: "/register",
       method: "POST",
-      body: { naem, surname, phone, email, newPassword },
+      body: { name, surname, phone, email, password: newPassword },
       setIsLoading,
       onSuccess: (result) => {
         if (result.success) {
           navigate("/sign-in");
         } else {
-          //setErrors?
+          if (result.message === "User with this email already exists.") {
+            setErrors({ email: result.message });
+          }
         }
       },
       onError: (error) => {
@@ -106,6 +108,7 @@ export const SignUp = () => {
             label="Email"
             type="email"
             value={email}
+            placeholder="email@example.com"
             onChange={(e) => {
               setEmail(e.target.value);
               if (errors.email) {
@@ -119,6 +122,7 @@ export const SignUp = () => {
             label="Phone"
             type="phone"
             value={phone}
+            placeholder="e.g. +370XXXXXXXX"
             onChange={(e) => {
               setPhone(e.target.value);
               if (errors.phone) {

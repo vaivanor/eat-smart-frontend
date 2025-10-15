@@ -51,10 +51,9 @@ export const SignIn = () => {
           handleLogin(result.accessToken);
           navigate("/");
         } else {
-          setErrors({
-            email: "Incorrect email or password.",
-            password: "Incorrect email or password.",
-          });
+          if (result.message === "Incorrect email or password.") {
+            setErrors({ password: result.message, email: result.message });
+          }
         }
       },
       onError: (error) => {
