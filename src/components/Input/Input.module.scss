@@ -1,0 +1,13 @@
+@use "../../styles/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  input {
+    border: 1px solid $primary-color;
+    border-radius: 0.25rem;
+    // height: $space-s;
+    padding: $space-xs $space-base;
+  }
+}

@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.container input {
+  border: 1px solid #1c2632;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}/*# sourceMappingURL=Input.module.css.map */
