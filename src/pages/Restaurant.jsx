@@ -20,6 +20,8 @@ import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
 import { CommentCard } from "../components/CommentCard/CommentCard.jsx";
 import { useAppContext } from "../store/AppContext.jsx";
 import { Button } from "../components/Button/Button.jsx";
+import { Modal } from "../components/Modal/Modal.jsx";
+import { useModal } from "../utils/useModal.js";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -31,6 +33,7 @@ export const Restaurant = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [columns, setColumns] = useState(1);
   const { isLoggedIn } = useAppContext();
+  const { isOpen, modalProps, showModal } = useModal();
 
   useEffect(() => {
     const fetchRestaurantAndComments = async () => {
@@ -75,6 +78,38 @@ export const Restaurant = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleDeleteComment = (commentId) => {
+    showModal({
+      text: "Are you sure you want to delete this comment?",
+      confirmText: "Yes",
+      cancelText: "Cancel",
+      onConfirm: async () => {
+        try {
+          await fetchData({
+            endpoint: `/comment/${commentId}`,
+            method: "DELETE",
+            token: localStorage.getItem("accessToken"),
+            onSuccess: () => {
+              setComments((prev) => prev.filter((c) => c._id !== commentId));
+            },
+            onError: () => {
+              showModal({
+                text: "Failed to delete comment. Please try again.",
+                confirmText: "Ok",
+              });
+            },
+          });
+        } catch (error) {
+          showModal({
+            text: "Something went wrong. Try again.",
+            confirmText: "OK",
+          });
+        }
+      },
+      onCancel: () => {},
+    });
+  };
 
   return (
     <PageWrapper>
@@ -176,11 +211,13 @@ export const Restaurant = () => {
               comments.map((comment) => (
                 <CommentCard
                   userId={comment.user[0]._id}
+                  commentId={comment._id}
                   key={comment._id}
                   name={comment.user[0].name}
                   evaluation={comment.evaluation}
                   comment={comment.comment}
                   createdAt={comment.createdAt}
+                  onDelete={handleDeleteComment}
                 />
               ))
             ) : (
@@ -189,6 +226,7 @@ export const Restaurant = () => {
           </GridWrapper>
         </>
       )}
+      <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
   );
 };
