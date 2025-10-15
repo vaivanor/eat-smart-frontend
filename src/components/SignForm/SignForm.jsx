@@ -1,6 +1,6 @@
-import style from "./Form.module.scss";
+import style from "./SignForm.module.scss";
 
-export const Form = ({ children }) => {
+export const SignForm = ({ children }) => {
   return (
     <div className={style.wrapper}>
       <form className={style.container}>{children}</form>

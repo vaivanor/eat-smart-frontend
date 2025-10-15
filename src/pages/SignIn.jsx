@@ -6,9 +6,9 @@ import { useAppContext } from "../store/AppContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
-import { Form } from "../components/Form/Form.jsx";
+import { SignForm } from "../components/SignForm/SignForm.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
-import bg from "../assets/background/bg.jpeg";
+import bg from "../assets/background/bg-2.jpeg";
 import { Input } from "../components/Input/Input.jsx";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -58,7 +58,7 @@ export const SignIn = () => {
 
   return (
     <PageWrapper backgroundSrc={bg}>
-      <Form>
+      <SignForm>
         <GridWrapper columns={1}>
           <h2>Sign In</h2>
         </GridWrapper>
@@ -88,7 +88,7 @@ export const SignIn = () => {
             <StyledLink to="/sign-up">Sign Up</StyledLink>
           </p>
         </GridWrapper>
-      </Form>
+      </SignForm>
 
       <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
