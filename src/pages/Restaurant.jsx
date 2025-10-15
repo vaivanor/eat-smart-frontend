@@ -175,6 +175,7 @@ export const Restaurant = () => {
             {comments && comments.length > 0 ? (
               comments.map((comment) => (
                 <CommentCard
+                  userId={comment.user[0]._id}
                   key={comment._id}
                   name={comment.user[0].name}
                   evaluation={comment.evaluation}

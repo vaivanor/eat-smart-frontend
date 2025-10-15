@@ -12,13 +12,17 @@
   margin: 1rem 0;
 }
 .container .buttonContainer {
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
 }
 @media (min-width: 768px) {
   .container .buttonContainer {
     align-items: center;
     justify-content: flex-end;
   }
+}
+.container .buttonContainer img {
+  width: 1.25rem;
 }/*# sourceMappingURL=CommentCard.module.css.map */

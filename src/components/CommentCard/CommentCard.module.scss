@@ -15,12 +15,16 @@
   }
 
   .buttonContainer {
-    padding: $space-base;
+    padding: $space-base 0;
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
     @media (min-width: 768px) {
       align-items: center;
       justify-content: flex-end;
+    }
+    img {
+      width: 1.25rem;
     }
   }
 }

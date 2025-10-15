@@ -1,9 +1,21 @@
 import style from "./CommentCard.module.scss";
 import rateIcon from "../../assets/icons/rate.svg";
 import { InfoRow } from "../InfoRow/InfoRow";
-import { Button } from "../Button/Button";
+import { ImageButton } from "../ImageButton/ImageButton";
+import editIcon from "../../assets/icons/edit.svg";
+import deleteIcon from "../../assets/icons/delete.svg";
+import { useAppContext } from "../../store/AppContext";
 
-export const CommentCard = ({ name, evaluation, comment, createdAt }) => {
+export const CommentCard = ({
+  userId,
+  name,
+  evaluation,
+  comment,
+  createdAt,
+}) => {
+  const { currentUser } = useAppContext();
+  const isAuthor = currentUser?._id === userId;
+
   return (
     <div className={style.container}>
       <div>
@@ -18,6 +30,12 @@ export const CommentCard = ({ name, evaluation, comment, createdAt }) => {
           })}
         </p>
       </div>
+      {isAuthor && (
+        <div className={style.buttonContainer}>
+          <ImageButton src={editIcon} alt="Edit icon." />
+          <ImageButton src={deleteIcon} alt="Delete icon." />
+        </div>
+      )}
     </div>
   );
 };
