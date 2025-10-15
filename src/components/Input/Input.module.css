@@ -7,4 +7,9 @@
   border: 1px solid #1c2632;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
+}
+.container .error {
+  color: #eb420f;
+  font-size: 0.9rem;
+  margin: 0;
 }/*# sourceMappingURL=Input.module.css.map */
