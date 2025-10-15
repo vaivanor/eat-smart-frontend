@@ -7,10 +7,9 @@
   padding: $space-base $space-base;
   @media (min-width: 768px) {
     grid-template-columns: repeat(var(--columns), 1fr);
-    padding: $space-s $space-m;
+    padding: $space-base $space-m;
   }
   @media (min-width: 1200px) {
-    padding: $space-s $space-xl;
   }
   img {
     width: $space-l;
