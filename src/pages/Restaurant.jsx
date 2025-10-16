@@ -90,7 +90,7 @@ export const Restaurant = () => {
           await fetchData({
             endpoint: `/comment/${commentId}`,
             method: "DELETE",
-            token: localStorage.getItem("accessToken"),
+            requireAuth: true,
             onSuccess: () => {
               setComments((prev) => prev.filter((c) => c._id !== commentId));
             },
