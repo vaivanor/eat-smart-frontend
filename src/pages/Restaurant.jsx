@@ -121,7 +121,7 @@ export const Restaurant = () => {
         state: {
           id: comment._id,
           evaluation: comment.evaluation,
-          commentText: comment.comment,
+          comment: comment.comment,
           restaurantPhoto: restaurant.photo,
         },
       }
