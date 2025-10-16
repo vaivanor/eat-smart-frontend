@@ -1,14 +1,16 @@
 @use "../../styles/variables" as *;
 
 .container {
-  padding: 0 $space-base;
+  padding: $space-xs $space-base;
   background-color: $light-color;
   display: grid;
   grid-template-columns: 1fr;
   box-shadow: 0px 1px 3px #d5d3cf;
   border-radius: $space-xs;
   margin-bottom: $space-xs;
-
+  @media (min-width: 768px) {
+    padding: $space-base $space-s;
+  }
   h3,
   p {
     margin: $space-base 0;
@@ -19,12 +21,17 @@
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    @media (min-width: 768px) {
-      align-items: center;
-      justify-content: flex-end;
-    }
+    align-items: center;
     img {
       width: 1.25rem;
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      height: 2rem;
+      width: 2rem;
     }
   }
 }

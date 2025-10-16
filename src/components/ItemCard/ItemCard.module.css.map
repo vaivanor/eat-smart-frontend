@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [
+    "CommentCard.module.scss",
+    "../../styles/_variables.scss",
+    "CommentCard.module.css"
+  ],
+  "names": [],
+  "mappings": "AAEA;EACE,oBAAA;EACA,uBCCY;EDAZ,aAAA;EACA,0BAAA;EACA,+BAAA;EACA,qBCIS;EDHT,qBCGS;ACJX;AFEE;EARF;IASI,kBAAA;EECF;AACF;AFAE;;EAEE,cAAA;AEEJ;AFCE;EACE,eAAA;EACA,aAAA;EACA,yBAAA;EACA,SAAA;EACA,mBAAA;AECJ;AFAI;EACE,cAAA;AEEN;AFAI;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,kBAAA;EACA,YAAA;EACA,WAAA;AEEN",
+  "file": "CommentCard.module.css"
+}

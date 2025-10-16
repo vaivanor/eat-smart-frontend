@@ -10,6 +10,7 @@ import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
 import cityIcon from "../assets/icons/city-light.svg";
 import cuisineIcon from "../assets/icons/cuisine-light.svg";
 import rateIcon from "../assets/icons/rate-light.svg";
+import rateIconDark from "../assets/icons/rate.svg";
 import calendarIcon from "../assets/icons/calendar.svg";
 import mapIcon from "../assets/icons/map.svg";
 import phoneIcon from "../assets/icons/phone.svg";
@@ -17,11 +18,11 @@ import emailIcon from "../assets/icons/email.svg";
 import linkIcon from "../assets/icons/link.svg";
 import backArrow from "../assets/icons/arrow.svg";
 import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
-import { CommentCard } from "../components/CommentCard/CommentCard.jsx";
 import { useAppContext } from "../store/AppContext.jsx";
 import { Button } from "../components/Button/Button.jsx";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { useModal } from "../utils/useModal.js";
+import { ItemCard } from "../components/ItemCard/ItemCard.jsx";
 
 export const Restaurant = () => {
   const location = useLocation();
@@ -209,16 +210,27 @@ export const Restaurant = () => {
             <h2>Comments</h2>
             {comments && comments.length > 0 ? (
               comments.map((comment) => (
-                <CommentCard
+                <ItemCard
                   userId={comment.user[0]._id}
-                  commentId={comment._id}
+                  id={comment._id}
                   key={comment._id}
-                  name={comment.user[0].name}
-                  evaluation={comment.evaluation}
-                  comment={comment.comment}
-                  createdAt={comment.createdAt}
                   onDelete={handleDeleteComment}
-                />
+                >
+                  <h3>{comment.user[0].name}</h3>
+                  <InfoRow
+                    icon={rateIconDark}
+                    text={`${comment.evaluation}/5`}
+                    alt="Email icon."
+                  />
+                  <p>{comment.comment}</p>
+                  <p>
+                    {new Date(comment.createdAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                </ItemCard>
               ))
             ) : (
               <p>No comments yet.</p>
