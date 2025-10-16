@@ -12,6 +12,7 @@ import { validateFields } from "../utils/validateFields.js";
 import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { fetchData } from "../utils/fetchData.js";
+import { TextArea } from "../components/TextArea/TextArea.jsx";
 
 export const EditComment = () => {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ export const EditComment = () => {
           }}
           error={errors.evaluation}
         />
-        <Input
+        <TextArea
           id="commentUpdate"
           label="Comment"
           type="text"
