@@ -66,7 +66,7 @@ export const SignUp = () => {
       },
       onError: (error) => {
         showModal({
-          text: error,
+          text: error.message || "Unexpected error occurred.",
           confirmText: "Try Again",
           onConfirm: () => {
             navigate("/sign-up");
@@ -125,6 +125,7 @@ export const SignUp = () => {
           <Input
             id="phoneSignUp"
             label="Phone"
+            details="(e.g. +37061234567)"
             type="phone"
             value={phone}
             onChange={(e) => {

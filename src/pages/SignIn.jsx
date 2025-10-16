@@ -58,7 +58,7 @@ export const SignIn = () => {
       },
       onError: (error) => {
         showModal({
-          text: error,
+          text: error.message || "Unexpected error occurred.",
           confirmText: "Try Again",
           onConfirm: () => {
             navigate("/sign-in");
