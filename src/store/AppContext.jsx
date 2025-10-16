@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import { fetchData } from "../utils/fetchData";
 
 const AppContext = createContext();
@@ -10,50 +11,53 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    setIsLoggedIn(!!token);
-
-    if (token) {
-      fetchData({
-        endpoint: "/profile",
-        token,
-        onSuccess: (result) => setCurrentUser(result.data),
-        onError: (error) =>
-          console.error("Failed to fetch user profile:", error),
-      });
+  const isTokenValid = (token) => {
+    try {
+      const { exp } = jwtDecode(token);
+      return exp * 1000 > Date.now();
+    } catch {
+      return false;
     }
-  }, []);
+  };
 
-  const handleLogin = (token) => {
-    localStorage.setItem("accessToken", token);
-    setIsLoggedIn(true);
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/sign-in");
+  };
 
-    fetchData({
+  const fetchProfile = async (token) => {
+    await fetchData({
       endpoint: "/profile",
       token,
-      onSuccess: (result) => setCurrentUser(result.data),
-      onError: (error) => console.error("Failed to fetch user profile:", error),
+      setIsLoading,
+      navigate,
+      onSuccess: (result) => {
+        setCurrentUser(result.data);
+        setIsLoggedIn(true);
+      },
+      onError: () => {
+        handleLogout();
+      },
     });
   };
 
-  const handleLogout = async () => {
-    try {
-      await fetch("http://localhost:3000/logout", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
 
-      localStorage.removeItem("accessToken");
-      setIsLoggedIn(false);
-      navigate("/");
-    } catch (error) {
-      console.error("Logout error:", error);
+    if (!token || !isTokenValid(token)) {
+      handleLogout();
+      return;
     }
+
+    fetchProfile(token);
+  }, []);
+
+  const handleLogin = async (token) => {
+    localStorage.setItem("accessToken", token);
+    setIsLoggedIn(true);
+    await fetchProfile(token);
   };
 
   const value = {
@@ -71,7 +75,7 @@ export const AppProvider = ({ children }) => {
 export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error();
+    throw new Error("useAppContext must be used within AppProvider");
   }
   return context;
 };
