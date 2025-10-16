@@ -10,6 +10,10 @@ export const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [wasLoggedIn, setWasLoggedIn] = useState(() => {
+    return localStorage.getItem("wasLoggedIn") === "true";
+  });
+
   const navigate = useNavigate();
 
   const isTokenValid = (token) => {
@@ -21,11 +25,24 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    setIsLoggedIn(false);
-    setCurrentUser(null);
-    navigate("/sign-in");
+  const handleLogout = async () => {
+    await fetchData({
+      endpoint: "/logout",
+      method: "POST",
+      setIsLoading,
+      navigate,
+      onSuccess: () => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("wasLoggedIn");
+        setIsLoggedIn(false);
+        setCurrentUser(null);
+        setWasLoggedIn(false);
+        navigate("/");
+      },
+      onError: (error) => {
+        console.error("Logout failed:", error);
+      },
+    });
   };
 
   const fetchProfile = async (token) => {
@@ -34,6 +51,7 @@ export const AppProvider = ({ children }) => {
       token,
       setIsLoading,
       navigate,
+      requireAuth: true,
       onSuccess: (result) => {
         setCurrentUser(result.data);
         setIsLoggedIn(true);
@@ -46,6 +64,8 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const initializeAuth = async () => {
+      if (!wasLoggedIn) return;
+
       let token = localStorage.getItem("accessToken");
 
       if (!token || !isTokenValid(token)) {
@@ -55,6 +75,8 @@ export const AppProvider = ({ children }) => {
             localStorage.setItem("accessToken", newToken);
             token = newToken;
           } else {
+            localStorage.removeItem("wasLoggedIn");
+            setWasLoggedIn(false);
             handleLogout();
             return;
           }
@@ -73,7 +95,9 @@ export const AppProvider = ({ children }) => {
 
   const handleLogin = async (token) => {
     localStorage.setItem("accessToken", token);
+    localStorage.setItem("wasLoggedIn", "true");
     setIsLoggedIn(true);
+    setWasLoggedIn(true);
     await fetchProfile(token);
   };
 
@@ -84,6 +108,8 @@ export const AppProvider = ({ children }) => {
     currentUser,
     handleLogin,
     handleLogout,
+    wasLoggedIn,
+    setWasLoggedIn,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
