@@ -12,7 +12,7 @@ import bg from "../assets/background/bg-2.jpeg";
 import { Input } from "../components/Input/Input.jsx";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { validateFields } from "../utils/validateFields.js";
+import { validateSignInFields } from "../utils/validateFields.js";
 
 const StyledLink = styled(Link)`
   color: #feb161;
@@ -32,7 +32,7 @@ export const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationErrors = validateFields({ email, password });
+    const validationErrors = validateSignInFields({ email, password });
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);

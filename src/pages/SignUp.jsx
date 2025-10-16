@@ -10,14 +10,14 @@ import { SignForm } from "../components/SignForm/SignForm.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import bg from "../assets/background/bg-3.jpeg";
 import { Input } from "../components/Input/Input.jsx";
-import { validateFields } from "../utils/validateFields.js";
+import { validateSignUpFields } from "../utils/validateFields.js";
 
 export const SignUp = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const [errors, setErrors] = useState({});
@@ -28,12 +28,12 @@ export const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationErrors = validateFields({
+    const validationErrors = validateSignUpFields({
       name,
       surname,
       email,
       phone,
-      newPassword,
+      password,
       repeatPassword,
     });
 
@@ -140,14 +140,14 @@ export const SignUp = () => {
             id="passwordSignUp"
             label="Password"
             type="password"
-            value={newPassword}
+            value={password}
             onChange={(e) => {
-              setNewPassword(e.target.value);
-              if (errors.newPassword) {
-                setErrors((prev) => ({ ...prev, newPassword: "" }));
+              setPassword(e.target.value);
+              if (errors.password) {
+                setErrors((prev) => ({ ...prev, password: "" }));
               }
             }}
-            error={errors.newPassword}
+            error={errors.password}
           />
           <Input
             id="repeatPasswordSignUp"

@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "../components/Button/Button.jsx";
 import { Input } from "../components/Input/Input.jsx";
 import { useState } from "react";
-import { validateFields } from "../utils/validateFields.js";
+import { validateCommentFields } from "../utils/validateFields.js";
 import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { fetchData } from "../utils/fetchData.js";
@@ -27,7 +27,7 @@ export const NewComment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateFields({ evaluation, comment });
+    const validationErrors = validateCommentFields({ evaluation, comment });
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
