@@ -82,5 +82,11 @@ export const validateFields = (fields) => {
     }
   }
 
+  if (fields.evaluation !== undefined) {
+    if (fields.evaluation < 1 || fields.evaluation > 5) {
+      errors.evaluation = "Evaluation must be a number between 1 and 5.";
+    }
+  }
+
   return errors;
 };
