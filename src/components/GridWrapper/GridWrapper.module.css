@@ -10,6 +10,11 @@
     padding: 1rem 3rem;
   }
 }
+@media (min-width: 1200px) {
+  .container {
+    padding: 1rem 6rem;
+  }
+}
 .container img {
   width: 4rem;
 }
