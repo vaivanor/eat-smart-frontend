@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { fetchData } from "../utils/fetchData";
+import { refreshAccessToken } from "../utils/refreshAccessToken";
 
 const AppContext = createContext();
 
@@ -44,14 +45,30 @@ export const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const initializeAuth = async () => {
+      let token = localStorage.getItem("accessToken");
 
-    if (!token || !isTokenValid(token)) {
-      handleLogout();
-      return;
-    }
+      if (!token || !isTokenValid(token)) {
+        try {
+          const newToken = await refreshAccessToken();
+          if (newToken) {
+            localStorage.setItem("accessToken", newToken);
+            token = newToken;
+          } else {
+            handleLogout();
+            return;
+          }
+        } catch (error) {
+          console.error("Token refresh failed:", error);
+          handleLogout();
+          return;
+        }
+      }
 
-    fetchProfile(token);
+      await fetchProfile(token);
+    };
+
+    initializeAuth();
   }, []);
 
   const handleLogin = async (token) => {
