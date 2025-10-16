@@ -7,10 +7,11 @@ import { useAppContext } from "../store/AppContext.jsx";
 import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
 import phoneIcon from "../assets/icons/phone.svg";
 import emailIcon from "../assets/icons/email.svg";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const { currentUser } = useAppContext();
-
+  const navigate = useNavigate();
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>

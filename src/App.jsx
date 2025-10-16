@@ -10,6 +10,7 @@ import { Reservations } from "./pages/Reservations";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { EditComment } from "./pages/EditComment";
 import { NewComment } from "./pages/NewComment";
+import { EditProfile } from "./pages/EditProfile";
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
             </PrivateRoute>
           }
           path="/profile"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <EditProfile />
+            </PrivateRoute>
+          }
+          path="/profile/edit-profile"
         />
         <Route
           element={
