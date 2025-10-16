@@ -1,8 +1,9 @@
-import { Navigate } from "react-router-dom";
-import { useAppContext } from "../../store/AppContext.jsx";
+import { useAppContext } from "../../store/AppContext";
 
 export const PrivateRoute = ({ children }) => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, isLoading } = useAppContext();
 
-  return isLoggedIn ? children : <Navigate to="/sign-in" />;
+  if (isLoading) return null;
+
+  return isLoggedIn ? children : null;
 };
