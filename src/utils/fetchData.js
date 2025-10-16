@@ -9,6 +9,7 @@ export const fetchData = async ({
   onError = () => {},
   setIsLoading = () => {},
   navigate = null,
+  requireAuth = false,
 }) => {
   setIsLoading(true);
 
@@ -43,7 +44,11 @@ export const fetchData = async ({
         });
       } else {
         localStorage.removeItem("accessToken");
-        if (navigate) navigate("/sign-in");
+
+        if (requireAuth && navigate) {
+          navigate("/sign-in");
+        }
+
         return null;
       }
     }
