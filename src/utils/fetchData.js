@@ -4,7 +4,6 @@ export const fetchData = async ({
   endpoint,
   method = "GET",
   body = null,
-  token = null,
   headers = { "Content-Type": "application/json" },
   onSuccess = () => {},
   onError = () => {},
@@ -13,15 +12,15 @@ export const fetchData = async ({
 }) => {
   setIsLoading(true);
 
-  const finalHeaders = {
-    ...headers,
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-  };
-
   try {
+    let token = localStorage.getItem("accessToken");
+
     let response = await fetch(`http://localhost:3000${endpoint}`, {
       method,
-      headers: finalHeaders,
+      headers: {
+        ...headers,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
       body: body ? JSON.stringify(body) : null,
       credentials: "include",
     });
@@ -31,17 +30,19 @@ export const fetchData = async ({
 
       if (newAccessToken) {
         localStorage.setItem("accessToken", newAccessToken);
+        token = newAccessToken;
 
         response = await fetch(`http://localhost:3000${endpoint}`, {
           method,
           headers: {
-            ...finalHeaders,
-            Authorization: `Bearer ${newAccessToken}`,
+            ...headers,
+            Authorization: `Bearer ${token}`,
           },
           body: body ? JSON.stringify(body) : null,
           credentials: "include",
         });
       } else {
+        localStorage.removeItem("accessToken");
         if (navigate) navigate("/sign-in");
         return null;
       }
