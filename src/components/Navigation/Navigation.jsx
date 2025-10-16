@@ -11,7 +11,7 @@ import { useMenu } from "../../utils/useMenu.js";
 
 export const Navigation = () => {
   const { isOpen, toggleMenu, closeMenu } = useMenu();
-  const { isLoggedIn, handleLogout } = useAppContext();
+  const { isLoggedIn, handleLogout, setWasLoggedIn } = useAppContext();
 
   const getClass = ({ isActive }) => {
     return isActive ? style.active : "";
@@ -33,10 +33,10 @@ export const Navigation = () => {
 
   const navigate = useNavigate();
 
-  const handleLogoutAndCloseMenu = async () => {
-    await handleLogout();
+  const handleLogoutAndCloseMenu = () => {
     closeMenu();
-    navigate("/");
+    setWasLoggedIn(false);
+    handleLogout();
   };
 
   return (
