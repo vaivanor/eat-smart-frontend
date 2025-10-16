@@ -71,15 +71,6 @@ export const Restaurant = () => {
     }
   }, [restaurantId]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setColumns(window.innerWidth >= 768 ? 2 : 1);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const handleDeleteComment = (commentId) => {
     showModal({
       text: "Are you sure you want to delete this comment?",
@@ -195,7 +186,7 @@ export const Restaurant = () => {
             )}
           </BackgroundWrapper>
 
-          <GridWrapper columns={columns}>
+          <GridWrapper columns="2">
             <div>
               <InfoRow
                 icon={calendarIcon}
@@ -228,7 +219,9 @@ export const Restaurant = () => {
               />
               <InfoRow
                 icon={emailIcon}
-                text={<a href={restaurant.email}>{restaurant.email}</a>}
+                text={
+                  <a href={`mailto:${restaurant.email}`}>{restaurant.email}</a>
+                }
                 alt="Email icon."
               />
             </div>
