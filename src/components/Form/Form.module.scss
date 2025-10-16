@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: $space-base $space-base;
+  align-items: baseline;
+  @media (min-width: 768px) {
+    align-items: center;
+    margin: $space-l $space-base;
+  }
+}
+
+.container {
+  border-radius: $space-xs;
+  padding: $space-s 0;
+  box-shadow: 0px 1px 3px #d5d3cf;
+  width: 100%;
+  max-width: 35rem;
+  background-color: $light-color;
+}

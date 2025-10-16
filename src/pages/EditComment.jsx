@@ -13,6 +13,7 @@ import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
+import { Form } from "../components/Form/Form.jsx";
 
 export const EditComment = () => {
   const navigate = useNavigate();
@@ -90,37 +91,39 @@ export const EditComment = () => {
           <h1>Edit Comment</h1>
         </div>
       </BackgroundWrapper>
-      <GridWrapper columns={1}>
-        <Input
-          id="evaluationUpdate"
-          label="Evaluation"
-          details="(1-5)"
-          type="number"
-          value={evaluationUpdate}
-          onChange={(e) => {
-            setEvaluationUpdate(e.target.value);
-            if (errors.evaluation) {
-              setErrors((prev) => ({ ...prev, evaluation: "" }));
-            }
-          }}
-          error={errors.evaluation}
-        />
-        <TextArea
-          id="commentUpdate"
-          label="Comment"
-          type="text"
-          value={commentUpdate}
-          onChange={(e) => {
-            setCommentUpdate(e.target.value);
-          }}
-        />
-      </GridWrapper>
+      <Form>
+        <GridWrapper columns={1}>
+          <Input
+            id="evaluationUpdate"
+            label="Evaluation"
+            details="(1-5)"
+            type="number"
+            value={evaluationUpdate}
+            onChange={(e) => {
+              setEvaluationUpdate(e.target.value);
+              if (errors.evaluation) {
+                setErrors((prev) => ({ ...prev, evaluation: "" }));
+              }
+            }}
+            error={errors.evaluation}
+          />
+          <TextArea
+            id="commentUpdate"
+            label="Comment"
+            type="text"
+            value={commentUpdate}
+            onChange={(e) => {
+              setCommentUpdate(e.target.value);
+            }}
+          />
+        </GridWrapper>
 
-      <GridWrapper columns={1} type="center">
-        <div>
-          <Button text="Confirm" type="primary" onClick={handleSubmit} />
-        </div>
-      </GridWrapper>
+        <GridWrapper columns={1} type="center">
+          <div>
+            <Button text="Confirm" type="primary" onClick={handleSubmit} />
+          </div>
+        </GridWrapper>
+      </Form>
       <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
   );
