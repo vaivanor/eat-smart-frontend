@@ -173,12 +173,24 @@ export const Restaurant = () => {
                   type="primary"
                   text="Reserve"
                   onClick={() => navigate("/reserve")}
-                ></Button>
+                />
                 <Button
                   type="secondary"
                   text="Leave a Comment"
-                  onClick={() => navigate("/comment")}
-                ></Button>
+                  onClick={() =>
+                    navigate(
+                      `/restaurants/${encodeURIComponent(
+                        restaurant.name.toLowerCase()
+                      )}/new-comment`,
+                      {
+                        state: {
+                          restaurantId,
+                          restaurantPhoto: restaurant.photo,
+                        },
+                      }
+                    )
+                  }
+                />
               </>
             )}
           </BackgroundWrapper>
