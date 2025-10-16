@@ -1,6 +1,6 @@
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
-import bg from "../assets/background/bg.jpeg";
+import bg from "../assets/background/bg-2.jpeg";
 
 export const Reservations = () => {
   return (
