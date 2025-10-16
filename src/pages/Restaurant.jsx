@@ -112,6 +112,22 @@ export const Restaurant = () => {
     });
   };
 
+  const handleEditComment = (comment) => {
+    navigate(
+      `/restaurants/${encodeURIComponent(
+        restaurant.name.toLowerCase()
+      )}/edit-comment`,
+      {
+        state: {
+          id: comment._id,
+          evaluation: comment.evaluation,
+          commentText: comment.comment,
+          restaurantPhoto: restaurant.photo,
+        },
+      }
+    );
+  };
+
   return (
     <PageWrapper>
       {isLoading ? (
@@ -122,7 +138,7 @@ export const Restaurant = () => {
             <ImageButton
               src={backArrow}
               alt="Back arrow icon."
-              onClick={() => navigate("/restaurants")}
+              onClick={() => navigate(-1)}
             />
           </GridWrapper>
           <BackgroundWrapper src={`/assets/restaurants/${restaurant.photo}`}>
@@ -214,6 +230,7 @@ export const Restaurant = () => {
                   userId={comment.user[0]._id}
                   id={comment._id}
                   key={comment._id}
+                  onEdit={() => handleEditComment(comment)}
                   onDelete={handleDeleteComment}
                 >
                   <h3>{comment.user[0].name}</h3>
