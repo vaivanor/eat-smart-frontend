@@ -8,10 +8,15 @@ import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
 import phoneIcon from "../assets/icons/phone.svg";
 import emailIcon from "../assets/icons/email.svg";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/Loader/Loader.jsx";
+Loader;
 
 export const Profile = () => {
   const { currentUser } = useAppContext();
   const navigate = useNavigate();
+
+  if (!currentUser) return <Loader />;
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -25,9 +30,9 @@ export const Profile = () => {
       </BackgroundWrapper>
       <GridWrapper>
         <div>
-          <h2
-            style={{ margin: "0.5rem 0 0 0" }}
-          >{`${currentUser.name} ${currentUser.surname}`}</h2>
+          <h2 style={{ margin: "0.5rem 0 0 0" }}>
+            {`${currentUser.name} ${currentUser.surname}`}
+          </h2>
         </div>
         <div>
           <InfoRow
