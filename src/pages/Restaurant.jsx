@@ -32,7 +32,6 @@ export const Restaurant = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [columns, setColumns] = useState(1);
   const { isLoggedIn } = useAppContext();
   const { isOpen, modalProps, showModal } = useModal();
 
