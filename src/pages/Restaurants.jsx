@@ -10,7 +10,7 @@ import { RestaurantCard } from "../components/RestaurantCard/RestaurantCard.jsx"
 
 export const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const { isLoading, setIsLoading } = useAppContext();
+  const [isLoading, setIsLoading] = useState(true);
   const [columns, setColumns] = useState(1);
 
   useEffect(() => {
