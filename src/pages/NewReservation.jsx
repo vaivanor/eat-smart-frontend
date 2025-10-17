@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Button } from "../components/Button/Button.jsx";
 import { Input } from "../components/Input/Input.jsx";
-import { useState } from "react";
-import { validateCommentFields } from "../utils/validateFields.js";
+import { useState, useEffect } from "react";
+import { validateReservationFields } from "../utils/validateFields.js";
 import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
-import { Calendar } from "../components/Calendar/Calendar.jsx";
+import { DatePicker } from "../components/DatePicker/DatePicker.jsx";
+import { TimePicker } from "../components/TimePicker/TimePicker.jsx";
 
 export const NewReservation = () => {
   const navigate = useNavigate();
@@ -23,37 +24,88 @@ export const NewReservation = () => {
     location.state;
 
   const [errors, setErrors] = useState({});
-  const [comment, setComment] = useState("");
+  const [availableTimes, setAvailableTimes] = useState([]);
+
   const { isOpen, modalProps, showModal } = useModal();
-  const [selectedDate, setSelectedDate] = useState(null);
+
+  const [date, setDate] = useState(new Date());
+  const [comment, setComment] = useState("");
+  const [seats, setSeats] = useState("");
+  const [time, setTime] = useState("");
+
+  const formatDate = (dateObj) => {
+    return dateObj.toISOString().split("T")[0];
+  };
+
+  useEffect(() => {
+    console.log(seats, date);
+
+    if (!date || !seats || !restaurantId) {
+      setAvailableTimes([]);
+      return;
+    }
+
+    const formattedDate = formatDate(date);
+
+    fetchData({
+      endpoint: `/restaurant/${restaurantId}/available-times?date=${formattedDate}&seats=${seats}`,
+      method: "GET",
+      onSuccess: (result) => {
+        if (result.success) {
+          setAvailableTimes(result.data);
+        } else {
+          showModal({
+            text: result.message || "Could not fetch available times.",
+            confirmText: "Try Again",
+          });
+        }
+      },
+      onError: (error) => {
+        showModal({
+          text: error || "Unexpected error occurred.",
+          confirmText: "Try Again",
+        });
+      },
+      requireAuth: true,
+      navigate,
+    });
+  }, [date, seats, restaurantId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateCommentFields({ evaluation, comment });
+    const validationErrors = validateReservationFields({
+      time,
+      seats,
+    });
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
     setErrors({});
+
     showModal({
       text: "Are you sure you want to make this reservation?",
       confirmText: "Yes",
       cancelText: "Cancel",
       onConfirm: () => {
+        const formattedDate = formatDate(date);
+        console.log(restaurantId, seats, formattedDate, time, comment);
         fetchData({
           endpoint: "/reservation",
           method: "POST",
           body: {
-            evaluation,
-            comment,
             restaurant_id: restaurantId,
+            seats,
+            date: formattedDate,
+            from: time,
+            additional: comment,
           },
           onSuccess: (result) => {
             if (result.success) {
               showModal({
                 text: "Your reservation has been created successfully!",
                 confirmText: "Ok",
-                onConfirm: () => navigate(-1),
+                onConfirm: () => navigate("/reservations"),
               });
             } else {
               showModal({
@@ -90,18 +142,39 @@ export const NewReservation = () => {
       </BackgroundWrapper>
       <Form>
         <GridWrapper columns={1}>
-          <Calendar
-            id="calendar"
+          <DatePicker
+            id="date"
             label="Date"
-            details="(select a date within the next 3 months)"
             workingHours={restaurantWorkingDays}
-            onChange={(date) => setSelectedDate(date)}
-            selectedDate={selectedDate}
+            onChange={(date) => setDate(date)}
+            selectedDate={date}
           />
-
-          {/* vietu pasirinkimo nurodymas */}
-
-          {/* tik nurodzius data ir vietu skaiciu rodomi laikai galimi, paimti is atskiro route i kuri nusiuntus grazina available times */}
+          <Input
+            id="seats"
+            label="People"
+            type="number"
+            value={seats}
+            onChange={(e) => {
+              setSeats(e.target.value);
+              if (errors.seats) {
+                setErrors((prev) => ({ ...prev, seats: "" }));
+              }
+            }}
+            error={errors.seats}
+          />
+          <TimePicker
+            id="time"
+            label="Time"
+            times={availableTimes}
+            selectedTime={time}
+            onChange={(e) => {
+              setTime(e.target.value);
+              if (errors.time) {
+                setErrors((prev) => ({ ...prev, time: "" }));
+              }
+            }}
+            error={errors.time}
+          />
 
           <TextArea
             id="additional"
