@@ -1,9 +1,8 @@
-import style from "./Calendar.module.scss";
-import DatePicker from "react-datepicker";
+import style from "./DatePicker.module.scss";
+import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 
-export const Calendar = ({
+export const DatePicker = ({
   id,
   label,
   details,
@@ -23,7 +22,7 @@ export const Calendar = ({
       <label htmlFor={id}>
         {label} <span> {details}</span>
       </label>
-      <DatePicker
+      <ReactDatePicker
         selected={selectedDate}
         onChange={onChange}
         minDate={new Date()}
