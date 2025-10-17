@@ -1,0 +1,17 @@
+@use "../../styles/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  select {
+    border: 1px solid $primary-color;
+    border-radius: 0.25rem;
+    padding: $space-xs $space-base;
+  }
+  .error {
+    color: $error-color;
+    font-size: 0.8rem;
+    margin: 0;
+  }
+}
