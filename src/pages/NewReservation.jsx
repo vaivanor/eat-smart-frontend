@@ -179,8 +179,7 @@ export const NewReservation = () => {
 
           <TextArea
             id="additional"
-            label="Additional Details"
-            details="(special requests or notes)"
+            label="Additional Comments"
             type="text"
             value={comment}
             onChange={(e) => {
