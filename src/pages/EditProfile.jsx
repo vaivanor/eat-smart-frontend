@@ -61,8 +61,6 @@ export const EditProfile = () => {
           requireAuth: true,
 
           onSuccess: (result) => {
-            console.log("Result from /profile:", result);
-
             if (result.success) {
               setCurrentUser((prev) => ({
                 ...prev,
@@ -70,9 +68,6 @@ export const EditProfile = () => {
                 surname,
                 phone,
               }));
-
-              setPassword("");
-              setRepeatPassword("");
 
               showModal({
                 text: "Profile successfully updated!",
@@ -95,6 +90,7 @@ export const EditProfile = () => {
           },
         });
       },
+      onCancel: () => {},
     });
   };
 
