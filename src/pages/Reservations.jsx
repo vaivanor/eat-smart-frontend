@@ -46,6 +46,46 @@ export const Reservations = () => {
     });
   }, []);
 
+  const handleDeleteReservation = (reservationId) => {
+    showModal({
+      text: "Are you sure you want to delete this reservation?",
+      confirmText: "Yes",
+      cancelText: "Cancel",
+      onConfirm: () => {
+        fetchData({
+          endpoint: `/reservation/${reservationId}`,
+          method: "DELETE",
+          requireAuth: true,
+          onSuccess: (result) => {
+            if (result.success) {
+              showModal({
+                text: "Reservation successfully deleted!",
+                confirmText: "Ok",
+                onConfirm: () => {
+                  setReservations((prev) =>
+                    prev.filter((r) => r._id !== reservationId)
+                  );
+                },
+              });
+            } else {
+              showModal({
+                text: result.message || "Something went wrong.",
+                confirmText: "Try Again",
+              });
+            }
+          },
+          onError: (error) => {
+            showModal({
+              text: error.message || "Unexpected error occurred.",
+              confirmText: "Try Again",
+            });
+          },
+        });
+      },
+      onCancel: () => {},
+    });
+  };
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -65,7 +105,7 @@ export const Reservations = () => {
                   id={reservation._id}
                   key={reservation._id}
                   onEdit={() => {}}
-                  onDelete={() => {}}
+                  onDelete={handleDeleteReservation}
                 >
                   <h3>{reservation.restaurant.name}</h3>
                   <InfoRow
