@@ -22,7 +22,7 @@ export const TimePicker = ({
         onChange={onChange}
         disabled={isDisabled}
       >
-        <option value="">{isDisabled ? "Loading..." : "Select time"}</option>
+        {isDisabled && <option value="">Loading...</option>}
 
         {!isDisabled &&
           times.map((time, index) => (
