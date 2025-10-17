@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.container :global(.react-datepicker__input-container input) {
+  border: 1px solid #1c2632;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.container :global(.react-datepicker) {
+  font-family: "Space Grotesk", sans-serif;
+  border: 1px solid #1c2632;
+}
+.container :global(.react-datepicker__header) {
+  background-color: #1c2632;
+  color: white;
+  border-bottom: none;
+  font-weight: bold;
+}
+.container :global(.react-datepicker__current-month) {
+  color: white;
+}
+.container :global(.react-datepicker__day) {
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+.container :global(.react-datepicker__day):not(.react-datepicker__day--disabled):hover {
+  background-color: #1c2632;
+  color: white;
+  border-radius: 50%;
+}
+.container :global(.react-datepicker__day--disabled) {
+  color: #1c2632;
+  opacity: 0.4;
+  background-color: white;
+  cursor: not-allowed;
+}
+.container :global(.react-datepicker__day--disabled):hover {
+  background-color: white !important;
+  color: #1c2632 !important;
+  opacity: 0.4;
+}
+.container :global(.react-datepicker__day--selected) {
+  background-color: #feb161;
+  color: #1c2632;
+  font-weight: bold;
+}
+.container :global(.react-datepicker__day--keyboard-selected) {
+  background-color: white;
+  color: #1c2632;
+}
+.container :global .react-datepicker__triangle path {
+  fill: #1c2632 !important;
+  stroke: #1c2632 !important;
+}/*# sourceMappingURL=Calendar.module.css.map */
