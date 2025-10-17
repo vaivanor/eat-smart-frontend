@@ -32,6 +32,7 @@ export const Restaurant = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [columns, setColumns] = useState(1);
   const { isLoggedIn } = useAppContext();
   const { isOpen, modalProps, showModal } = useModal();
 
@@ -75,28 +76,36 @@ export const Restaurant = () => {
       text: "Are you sure you want to delete this comment?",
       confirmText: "Yes",
       cancelText: "Cancel",
-      onConfirm: async () => {
-        try {
-          await fetchData({
-            endpoint: `/comment/${commentId}`,
-            method: "DELETE",
-            requireAuth: true,
-            onSuccess: () => {
-              setComments((prev) => prev.filter((c) => c._id !== commentId));
-            },
-            onError: () => {
+      onConfirm: () => {
+        fetchData({
+          endpoint: `/comment/${commentId}`,
+          method: "DELETE",
+          requireAuth: true,
+          onSuccess: (result) => {
+            if (result.success) {
               showModal({
-                text: "Failed to delete comment. Please try again.",
+                text: "Comment successfully deleted!",
                 confirmText: "Ok",
+                onConfirm: () => {
+                  setComments((prev) =>
+                    prev.filter((c) => c._id !== commentId)
+                  );
+                },
               });
-            },
-          });
-        } catch (error) {
-          showModal({
-            text: "Something went wrong. Try again.",
-            confirmText: "OK",
-          });
-        }
+            } else {
+              showModal({
+                text: result.message || "Something went wrong.",
+                confirmText: "Try Again",
+              });
+            }
+          },
+          onError: (error) => {
+            showModal({
+              text: error.message || "Unexpected error occurred.",
+              confirmText: "Try Again",
+            });
+          },
+        });
       },
       onCancel: () => {},
     });
