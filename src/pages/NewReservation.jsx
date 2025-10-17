@@ -38,10 +38,9 @@ export const NewReservation = () => {
   };
 
   useEffect(() => {
-    console.log(seats, date);
-
     if (!date || !seats || !restaurantId) {
       setAvailableTimes([]);
+      setTime("");
       return;
     }
 
@@ -53,6 +52,9 @@ export const NewReservation = () => {
       onSuccess: (result) => {
         if (result.success) {
           setAvailableTimes(result.data);
+          if (result.data.length > 0) {
+            setTime(result.data[0]);
+          }
         } else {
           showModal({
             text: result.message || "Could not fetch available times.",
@@ -89,7 +91,6 @@ export const NewReservation = () => {
       cancelText: "Cancel",
       onConfirm: () => {
         const formattedDate = formatDate(date);
-        console.log(restaurantId, seats, formattedDate, time, comment);
         fetchData({
           endpoint: "/reservation",
           method: "POST",
@@ -151,7 +152,7 @@ export const NewReservation = () => {
           />
           <Input
             id="seats"
-            label="People"
+            label="Number of People"
             type="number"
             value={seats}
             onChange={(e) => {
@@ -178,7 +179,7 @@ export const NewReservation = () => {
 
           <TextArea
             id="additional"
-            label="Additional"
+            label="Additional Details"
             details="(special requests or notes)"
             type="text"
             value={comment}
