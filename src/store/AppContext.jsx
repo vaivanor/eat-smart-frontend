@@ -106,6 +106,7 @@ export const AppProvider = ({ children }) => {
     setIsLoading,
     isLoggedIn,
     currentUser,
+    setCurrentUser,
     handleLogin,
     handleLogout,
     wasLoggedIn,
