@@ -24,7 +24,7 @@ export const Calendar = ({
         {label} <span> {details}</span>
       </label>
       <DatePicker
-        selected={selectedDate || new Date()}
+        selected={selectedDate}
         onChange={onChange}
         minDate={new Date()}
         maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
