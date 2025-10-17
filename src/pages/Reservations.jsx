@@ -10,10 +10,42 @@ import clockIcon from "../assets/icons/clock.svg";
 import personIcon from "../assets/icons/person.svg";
 import pinIcon from "../assets/icons/pin.svg";
 import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
+import { useState, useEffect } from "react";
+import { fetchData } from "../utils/fetchData.js";
+import { Modal } from "../components/Modal/Modal.jsx";
+import { useModal } from "../utils/useModal.js";
+import { useNavigate } from "react-router-dom";
+import { Loader } from "../components/Loader/Loader.jsx";
 
 export const Reservations = () => {
   const { currentUser } = useAppContext();
-  const reservations = currentUser?.reservations || [];
+
+  const [reservations, setReservations] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { isOpen, modalProps, showModal } = useModal();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchData({
+      endpoint: "/profile/reservations",
+      method: "GET",
+      setIsLoading,
+      requireAuth: true,
+      onSuccess: (result) => {
+        setReservations(result.data);
+      },
+      onError: (error) => {
+        showModal({
+          text: error,
+          confirmText: "Try again",
+          onConfirm: () => {
+            navigate("/reservations");
+          },
+        });
+      },
+    });
+  }, []);
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -21,72 +53,82 @@ export const Reservations = () => {
           <h1>Reservations</h1>
         </div>
       </BackgroundWrapper>
-      <GridWrapper columns={1}>
-        {reservations && reservations.length > 0 ? (
-          reservations.map((reservation) => (
-            <ItemCard
-              userId={currentUser._id}
-              id={reservation._id}
-              key={reservation._id}
-              onEdit={() => {}}
-              onDelete={() => {}}
-            >
-              <h3>{reservation.restaurant.name}</h3>
-              <InfoRow
-                icon={mapIcon}
-                text={reservation.restaurant.address}
-                alt="Adress icon."
-              />
-              <InfoRow
-                icon={calendarIcon}
-                text={new Date(reservation.date).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-                alt="Calendar icon."
-              />
-              <InfoRow
-                icon={clockIcon}
-                text={`${reservation.from}-${reservation.to}`}
-                alt="Clock icon."
-              />
-              <InfoRow
-                icon={personIcon}
-                text={reservation.seats}
-                alt="Person icon."
-              />
-              <InfoRow
-                icon={pinIcon}
-                text={reservation.additional}
-                alt="Pin icon."
-              />
-              <p>
-                {reservation.updatedAt
-                  ? `Updated: ${new Date(
-                      reservation.updatedAt
-                    ).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}`
-                  : `Created: ${new Date(
-                      reservation.createdAt
-                    ).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}`}
-              </p>
-            </ItemCard>
-          ))
-        ) : (
-          <p>No reservations yet.</p>
-        )}
-      </GridWrapper>
-      <GridWrapper>
-        <h2>History</h2>
-      </GridWrapper>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <GridWrapper columns={1}>
+            {reservations && reservations.length > 0 ? (
+              reservations.map((reservation) => (
+                <ItemCard
+                  userId={currentUser._id}
+                  id={reservation._id}
+                  key={reservation._id}
+                  onEdit={() => {}}
+                  onDelete={() => {}}
+                >
+                  <h3>{reservation.restaurant.name}</h3>
+                  <InfoRow
+                    icon={mapIcon}
+                    text={reservation.restaurant.address}
+                    alt="Adress icon."
+                  />
+                  <InfoRow
+                    icon={calendarIcon}
+                    text={new Date(reservation.date).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      }
+                    )}
+                    alt="Calendar icon."
+                  />
+                  <InfoRow
+                    icon={clockIcon}
+                    text={`${reservation.from}-${reservation.to}`}
+                    alt="Clock icon."
+                  />
+                  <InfoRow
+                    icon={personIcon}
+                    text={reservation.seats}
+                    alt="Person icon."
+                  />
+                  <InfoRow
+                    icon={pinIcon}
+                    text={reservation.additional}
+                    alt="Pin icon."
+                  />
+                  <p>
+                    {reservation.updatedAt
+                      ? `Updated: ${new Date(
+                          reservation.updatedAt
+                        ).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })}`
+                      : `Created: ${new Date(
+                          reservation.createdAt
+                        ).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })}`}
+                  </p>
+                </ItemCard>
+              ))
+            ) : (
+              <p>No reservations yet.</p>
+            )}
+          </GridWrapper>
+          <GridWrapper>
+            <h2>History</h2>
+          </GridWrapper>
+        </>
+      )}
+      <Modal isOpen={isOpen} {...modalProps} />
     </PageWrapper>
   );
 };
