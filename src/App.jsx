@@ -11,6 +11,7 @@ import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { EditComment } from "./pages/EditComment";
 import { NewComment } from "./pages/NewComment";
 import { EditProfile } from "./pages/EditProfile";
+import { NewReservation } from "./pages/NewReservation";
 
 function App() {
   return (
@@ -62,6 +63,14 @@ function App() {
             </PrivateRoute>
           }
           path="/reservations"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <NewReservation />
+            </PrivateRoute>
+          }
+          path="/restaurants/:restaurantName/new-reservation"
         />
       </Routes>
     </>
