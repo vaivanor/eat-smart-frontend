@@ -59,7 +59,6 @@ export const EditProfile = () => {
             ...(password?.trim() ? { password } : {}),
           },
           requireAuth: true,
-
           onSuccess: (result) => {
             if (result.success) {
               setCurrentUser((prev) => ({
