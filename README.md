@@ -49,3 +49,7 @@ EatSmart is a React application built with Vite. This system allows users to bro
 - **pnpm-lock.yaml** – Dependency lock file
 - **README.md** – Project documentation
 - **vite.config.js** – Vite configuration
+
+### License
+
+This project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses)
