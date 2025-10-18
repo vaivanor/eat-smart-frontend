@@ -27,3 +27,25 @@ EatSmart is a React application built with Vite. This system allows users to bro
   ```bash
   pnpm run dev
   ```
+
+### Project Structure
+
+- **public/** – Public images
+
+**src/**
+
+- **assets/** – Project assets
+- **components/** – Reusable UI components
+- **pages/** – Application pages (Home, Profile, Reservations, etc.)
+- **store/** – Global state management
+- **styles/** – SCSS variables and index.scss
+- **utils/** – Utility functions
+- **App.jsx** – Main App component
+- **main.jsx** – Entry point
+
+- **index.html** – Entry point
+- **eslint.config.js** – ESLint rules
+- **package.json** – Project metadata and scripts
+- **pnpm-lock.yaml** – Dependency lock file
+- **README.md** – Project documentation
+- **vite.config.js** – Vite configuration
