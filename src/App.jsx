@@ -13,6 +13,7 @@ import { NewComment } from "./pages/NewComment";
 import { EditProfile } from "./pages/EditProfile";
 import { NewReservation } from "./pages/NewReservation";
 import { EditReservation } from "./pages/EditReservation";
+import { Error } from "./pages/Error";
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
           }
           path="/reservations/edit-reservation"
         />
+        <Route Component={Error} path="/*" />
       </Routes>
     </>
   );
