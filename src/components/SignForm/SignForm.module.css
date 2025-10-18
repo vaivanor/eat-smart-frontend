@@ -19,6 +19,7 @@
 }
 
 .container {
+  padding-bottom: 2rem;
   background-color: white;
   display: grid;
   grid-template-columns: 1fr;

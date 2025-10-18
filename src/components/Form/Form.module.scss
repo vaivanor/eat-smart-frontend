@@ -14,9 +14,12 @@
 
 .container {
   border-radius: $space-xs;
-  padding: $space-s 0;
+  padding: $space-xs 0;
   box-shadow: 0px 1px 3px #d5d3cf;
   width: 100%;
   max-width: 35rem;
   background-color: $light-color;
+  @media (min-width: 768px) {
+    padding: $space-s 0;
+  }
 }
