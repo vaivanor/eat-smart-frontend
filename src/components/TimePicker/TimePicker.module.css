@@ -8,6 +8,10 @@
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
 }
+.container select option:hover {
+  background-color: #feb161;
+  color: #1c2632;
+}
 .container .error {
   color: #eb420f;
   font-size: 0.8rem;

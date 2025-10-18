@@ -8,6 +8,12 @@
     border: 1px solid $primary-color;
     border-radius: 0.25rem;
     padding: $space-xs $space-base;
+    option {
+      &:hover {
+        background-color: $accent-color;
+        color: $primary-color;
+      }
+    }
   }
   .error {
     color: $error-color;
