@@ -23,7 +23,9 @@ export const NewReservation = () => {
   const location = useLocation();
 
   if (!location.state) {
-    return <Error />;
+    return (
+      <Error message="Restaurant details are missing. Please start your reservation from the restaurant's page." />
+    );
   }
 
   const { restaurantId, restaurantPhoto, restaurantWorkingDays } =

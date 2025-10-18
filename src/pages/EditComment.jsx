@@ -21,7 +21,9 @@ export const EditComment = () => {
   const location = useLocation();
 
   if (!location.state) {
-    return <Error />;
+    return (
+      <Error message="Comment data is missing. Please access this page from the restaurant's comment section." />
+    );
   }
 
   const { id, evaluation, comment, restaurantPhoto } = location.state;

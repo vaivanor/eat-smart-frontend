@@ -1,6 +1,6 @@
-import { Navigate } from "react-router-dom";
 import { useAppContext } from "../../store/AppContext";
 import { Loader } from "../Loader/Loader";
+import { Error } from "../../pages/Error.jsx";
 
 export const PrivateRoute = ({ children }) => {
   const { isLoggedIn, isLoading } = useAppContext();
@@ -9,5 +9,9 @@ export const PrivateRoute = ({ children }) => {
     return <Loader />;
   }
 
-  return isLoggedIn ? children : <Navigate to="/sign-in" replace />;
+  return isLoggedIn ? (
+    children
+  ) : (
+    <Error message="Access denied. Please sign in to view this page." />
+  );
 };

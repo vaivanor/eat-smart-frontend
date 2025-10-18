@@ -31,7 +31,9 @@ export const Restaurant = () => {
   const restaurantId = location.state?.id;
 
   if (!location.state) {
-    return <Error />;
+    return (
+      <Error message="Restaurant information is missing. Please access this page from the restaurants list." />
+    );
   }
 
   const [restaurant, setRestaurant] = useState(null);

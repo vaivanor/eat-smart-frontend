@@ -23,7 +23,9 @@ export const EditReservation = () => {
   const location = useLocation();
 
   if (!location.state) {
-    return <Error />;
+    return (
+      <Error message="Reservation data not found. Please access this page from your reservations list." />
+    );
   }
 
   const {

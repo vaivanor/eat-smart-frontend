@@ -21,7 +21,9 @@ export const NewComment = () => {
   const location = useLocation();
 
   if (!location.state) {
-    return <Error />;
+    return (
+      <Error message="Restaurant information is missing. Please access this page from the restaurant's page to leave a comment." />
+    );
   }
 
   const { restaurantId, restaurantPhoto } = location.state;
