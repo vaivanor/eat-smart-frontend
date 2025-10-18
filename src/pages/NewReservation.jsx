@@ -78,6 +78,7 @@ export const NewReservation = () => {
     const validationErrors = validateReservationFields({
       time,
       seats,
+      date,
     });
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -147,8 +148,14 @@ export const NewReservation = () => {
             id="date"
             label="Date"
             workingHours={restaurantWorkingDays}
-            onChange={(date) => setDate(date)}
+            onChange={(selectedDate) => {
+              setDate(selectedDate);
+              if (errors.date) {
+                setErrors((prev) => ({ ...prev, date: "" }));
+              }
+            }}
             selectedDate={date}
+            error={errors.date}
           />
           <Input
             id="seats"
