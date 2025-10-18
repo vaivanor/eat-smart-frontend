@@ -23,10 +23,7 @@ export const Profile = () => {
         <div>
           <h1>Profile</h1>
         </div>
-        <Button
-          text="Update"
-          onClick={() => navigate("/profile/edit-profile")}
-        />
+        <Button text="Edit" onClick={() => navigate("/profile/edit-profile")} />
       </BackgroundWrapper>
       <GridWrapper>
         <div>
