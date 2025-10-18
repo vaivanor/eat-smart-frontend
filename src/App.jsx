@@ -12,6 +12,7 @@ import { EditComment } from "./pages/EditComment";
 import { NewComment } from "./pages/NewComment";
 import { EditProfile } from "./pages/EditProfile";
 import { NewReservation } from "./pages/NewReservation";
+import { EditReservation } from "./pages/EditReservation";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
         <Route
           element={
             <PrivateRoute>
+              <NewReservation />
+            </PrivateRoute>
+          }
+          path="/restaurants/:restaurantName/new-reservation"
+        />
+        <Route
+          element={
+            <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
@@ -67,10 +76,18 @@ function App() {
         <Route
           element={
             <PrivateRoute>
-              <NewReservation />
+              <Reservations />
             </PrivateRoute>
           }
-          path="/restaurants/:restaurantName/new-reservation"
+          path="/reservations"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <EditReservation />
+            </PrivateRoute>
+          }
+          path="/reservations/edit-reservation"
         />
       </Routes>
     </>
