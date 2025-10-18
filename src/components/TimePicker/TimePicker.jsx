@@ -8,8 +8,9 @@ export const TimePicker = ({
   onChange,
   selectedTime,
   error = "",
+  hasSelection = false,
 }) => {
-  const isDisabled = times.length === 0;
+  const isDisabled = !hasSelection;
 
   return (
     <div className={style.container}>
@@ -20,9 +21,11 @@ export const TimePicker = ({
         id={id}
         value={selectedTime}
         onChange={onChange}
-        disabled={isDisabled}
+        disabled={isDisabled || times.length === 0}
       >
-        {isDisabled && <option value="">Loading...</option>}
+        {(isDisabled || times.length === 0) && (
+          <option value="">Loading...</option>
+        )}
 
         {!isDisabled &&
           times.map((time, index) => (
@@ -32,11 +35,15 @@ export const TimePicker = ({
           ))}
       </select>
 
-      {isDisabled && (
+      {isDisabled ? (
         <p className={style.error}>
           {error || "Select a date and number of people first."}
         </p>
-      )}
+      ) : times.length === 0 ? (
+        <p className={style.error}>
+          No available times for the selected date and number of people.
+        </p>
+      ) : null}
     </div>
   );
 };
