@@ -16,10 +16,13 @@ import { Modal } from "../components/Modal/Modal.jsx";
 import { useModal } from "../utils/useModal.js";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../components/Loader/Loader.jsx";
+import { Input } from "../components/Input/Input.jsx";
 
 export const Reservations = () => {
   const { currentUser } = useAppContext();
   const [reservations, setReservations] = useState([]);
+  const [searchInputContent, setSearchInputContent] = useState("");
+  const [filteredReservations, setFilteredReservations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isOpen, modalProps, showModal } = useModal();
   const navigate = useNavigate();
@@ -32,6 +35,7 @@ export const Reservations = () => {
       requireAuth: true,
       onSuccess: (result) => {
         setReservations(result.data);
+        setFilteredReservations(result.data);
       },
       onError: (error) => {
         showModal({
@@ -101,6 +105,22 @@ export const Reservations = () => {
     });
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const inputValue = searchInputContent.toLowerCase().trim();
+
+      const filtered = reservations.filter(
+        (reservation) =>
+          reservation.restaurant.name.toLowerCase().includes(inputValue) ||
+          reservation.restaurant.address.toLowerCase().includes(inputValue)
+      );
+
+      setFilteredReservations(filtered);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [searchInputContent, reservations]);
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -113,8 +133,23 @@ export const Reservations = () => {
       ) : (
         <>
           <GridWrapper columns={1}>
-            {reservations && reservations.length > 0 ? (
-              reservations.map((reservation) => (
+            <Input
+              id="search"
+              label="Search"
+              details="(by name or address)"
+              type="text"
+              value={searchInputContent}
+              onChange={(e) => setSearchInputContent(e.target.value)}
+            />
+          </GridWrapper>
+
+          <GridWrapper columns={1}>
+            {reservations.length === 0 ? (
+              <p style={{ marginTop: "0" }}>No reservations yet.</p>
+            ) : filteredReservations.length === 0 ? (
+              <p style={{ marginTop: "0" }}>No results found.</p>
+            ) : (
+              filteredReservations.map((reservation) => (
                 <ItemCard
                   userId={currentUser._id}
                   id={reservation._id}
@@ -128,7 +163,7 @@ export const Reservations = () => {
                   <InfoRow
                     icon={mapIcon}
                     text={reservation.restaurant.address}
-                    alt="Adress icon."
+                    alt="Address icon."
                   />
                   <InfoRow
                     icon={calendarIcon}
@@ -176,12 +211,7 @@ export const Reservations = () => {
                   </p>
                 </ItemCard>
               ))
-            ) : (
-              <p>No reservations yet.</p>
             )}
-          </GridWrapper>
-          <GridWrapper>
-            <h2>History</h2>
           </GridWrapper>
         </>
       )}

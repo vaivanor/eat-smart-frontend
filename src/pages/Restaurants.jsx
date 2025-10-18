@@ -74,6 +74,7 @@ export const Restaurants = () => {
           id="search"
           label="Search"
           type="text"
+          details="(by name, city or cuisine)"
           value={searchInputContent}
           onChange={(e) => setSearchInputContent(e.target.value)}
         />
