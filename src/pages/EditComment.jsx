@@ -14,10 +14,16 @@ import { Modal } from "../components/Modal/Modal.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
+import { Error } from "./Error.jsx";
 
 export const EditComment = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  if (!location.state) {
+    return <Error />;
+  }
+
   const { id, evaluation, comment, restaurantPhoto } = location.state;
   const [errors, setErrors] = useState({});
   const [evaluationUpdate, setEvaluationUpdate] = useState(evaluation || "");

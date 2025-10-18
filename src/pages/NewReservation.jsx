@@ -16,10 +16,16 @@ import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
 import { DatePicker } from "../components/DatePicker/DatePicker.jsx";
 import { TimePicker } from "../components/TimePicker/TimePicker.jsx";
+import { Error } from "./Error.jsx";
 
 export const NewReservation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  if (!location.state) {
+    return <Error />;
+  }
+
   const { restaurantId, restaurantPhoto, restaurantWorkingDays } =
     location.state;
 

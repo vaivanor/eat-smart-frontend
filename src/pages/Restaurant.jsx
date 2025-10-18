@@ -23,11 +23,16 @@ import { Button } from "../components/Button/Button.jsx";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { useModal } from "../utils/useModal.js";
 import { ItemCard } from "../components/ItemCard/ItemCard.jsx";
+import { Error } from "./Error.jsx";
 
 export const Restaurant = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const restaurantId = location.state?.id;
+
+  if (!location.state) {
+    return <Error />;
+  }
 
   const [restaurant, setRestaurant] = useState(null);
   const [comments, setComments] = useState(null);
