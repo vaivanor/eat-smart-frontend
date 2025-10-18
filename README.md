@@ -11,23 +11,19 @@ EatSmart is a React application built with Vite. This system allows users to bro
 
 ### Getting Started
 
-1. Download and set up the backend – [EatSmart backend API](https://github.com/vaivanor/eat-smart-backend)
-   Follow the instructions in the backend README.md to:
+- Download and set up the backend – [EatSmart backend API](https://github.com/vaivanor/eat-smart-backend)
+  (follow the instructions in the backend README.md)
 
-- Install dependencies
-- Configure .env
-- Start the backend server
-
-2. Download and set up the frontend
+- Download and set up the frontend
 
 - Install dependencies:
 
-```bash
-pnpm i
-```
+  ```bash
+  pnpm i
+  ```
 
 - Start the project:
 
-```bash
-pnpm run dev
-```
+  ```bash
+  pnpm run dev
+  ```
