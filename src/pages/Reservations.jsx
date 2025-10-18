@@ -86,6 +86,21 @@ export const Reservations = () => {
     });
   };
 
+  const handleEditReservation = (reservation) => {
+    navigate("/reservations/edit-reservation", {
+      state: {
+        id: reservation._id,
+        date: reservation.date,
+        time: reservation.from,
+        seats: reservation.seats,
+        comment: reservation.additional,
+        restaurantId: reservation.restaurant_id,
+        restaurantPhoto: reservation.restaurant.photo,
+        restaurantWorkingDays: reservation.restaurant.workingHours,
+      },
+    });
+  };
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -104,7 +119,9 @@ export const Reservations = () => {
                   userId={currentUser._id}
                   id={reservation._id}
                   key={reservation._id}
-                  onEdit={() => {}}
+                  onEdit={() => {
+                    handleEditReservation(reservation);
+                  }}
                   onDelete={handleDeleteReservation}
                 >
                   <h3>{reservation.restaurant.name}</h3>
@@ -137,7 +154,7 @@ export const Reservations = () => {
                   />
                   <InfoRow
                     icon={pinIcon}
-                    text={reservation.additional}
+                    text={reservation.additional || "-"}
                     alt="Pin icon."
                   />
                   <p>
