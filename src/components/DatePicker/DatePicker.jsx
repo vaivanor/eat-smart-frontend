@@ -9,6 +9,7 @@ export const DatePicker = ({
   workingHours,
   selectedDate,
   onChange,
+  error = "",
 }) => {
   const allowedDays = Object.keys(workingHours);
 
@@ -30,6 +31,7 @@ export const DatePicker = ({
         filterDate={isDateAllowed}
         dateFormat="yyyy-MM-dd"
       />
+      {error && <p className={style.error}>{error}</p>}
     </div>
   );
 };

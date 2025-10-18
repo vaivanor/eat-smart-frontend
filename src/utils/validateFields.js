@@ -170,17 +170,21 @@ export const validateProfileUpdateFields = ({
   return errors;
 };
 
-export const validateReservationFields = ({ seats, time }) => {
+export const validateReservationFields = ({ seats, time, date }) => {
   const errors = {};
 
   if (seats === "" || seats === null || isNaN(seats)) {
-    errors.seats = "*People number is required.";
+    errors.seats = "*Number of People is required.";
   } else if (seats < 1) {
-    errors.seats = "People number must be at least 1.";
+    errors.seats = "Number of people must be at least 1.";
   }
 
   if (!time?.trim()) {
     errors.time = "*Select a time from available options.";
+  }
+
+  if (!date) {
+    errors.date = "*Date is required.";
   }
 
   return errors;
