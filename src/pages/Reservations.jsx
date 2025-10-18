@@ -19,7 +19,6 @@ import { Loader } from "../components/Loader/Loader.jsx";
 
 export const Reservations = () => {
   const { currentUser } = useAppContext();
-
   const [reservations, setReservations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isOpen, modalProps, showModal } = useModal();
