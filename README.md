@@ -39,7 +39,7 @@ EatSmart is a React application built with Vite. This system allows users to bro
   - **pages/** – Application pages (Home, Profile, Reservations, etc.)
   - **store/** – Global state management
   - **styles/** – SCSS variables and index.scss
-  - **utils/** – Utility functions
+  - **utils/** – Utility functions, custom hooks
   - **App.jsx** – Main App component
   - **main.jsx** – Entry point
 
