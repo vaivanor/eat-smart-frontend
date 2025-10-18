@@ -108,12 +108,20 @@ export const Reservations = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       const inputValue = searchInputContent.toLowerCase().trim();
+      const now = new Date();
 
-      const filtered = reservations.filter(
-        (reservation) =>
-          reservation.restaurant.name.toLowerCase().includes(inputValue) ||
-          reservation.restaurant.address.toLowerCase().includes(inputValue)
-      );
+      const filtered = reservations
+        .filter((reservation) => {
+          const reservationEnd = new Date(reservation.date);
+          const [endHour, endMinute] = reservation.to.split(":");
+          reservationEnd.setHours(endHour, endMinute, 0, 0);
+          return reservationEnd >= now;
+        })
+        .filter(
+          (reservation) =>
+            reservation.restaurant.name.toLowerCase().includes(inputValue) ||
+            reservation.restaurant.address.toLowerCase().includes(inputValue)
+        );
 
       setFilteredReservations(filtered);
     }, 300);
