@@ -1,11 +1,14 @@
 import { PageWrapper } from "../components/PageWrapper/PageWrapper";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper";
 
-export const Error = () => {
+export const Error = ({ message }) => {
   return (
     <PageWrapper>
       <GridWrapper columns={1} type="center">
-        <h1>Page not found...</h1>
+        <div>
+          <h1>Page not found...</h1>
+          <p>{message}</p>
+        </div>
       </GridWrapper>
     </PageWrapper>
   );
