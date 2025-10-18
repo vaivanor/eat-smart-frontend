@@ -14,6 +14,7 @@ import { fetchData } from "../utils/fetchData.js";
 import { Form } from "../components/Form/Form.jsx";
 import { useAppContext } from "../store/AppContext.jsx";
 import bg from "../assets/background/bg-2.jpeg";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const EditProfile = () => {
   const { currentUser, setCurrentUser } = useAppContext();
@@ -105,6 +106,7 @@ export const EditProfile = () => {
       <BackgroundWrapper src={bg}>
         <div>
           <h1>Edit Profile</h1>
+          <Breadcrumbs items={["Profile", "Edit Profile"]} />
         </div>
       </BackgroundWrapper>
       <Form>

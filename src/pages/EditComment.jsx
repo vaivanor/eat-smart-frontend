@@ -15,6 +15,7 @@ import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
 import { Error } from "./Error.jsx";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const EditComment = () => {
   const navigate = useNavigate();
@@ -26,7 +27,8 @@ export const EditComment = () => {
     );
   }
 
-  const { id, evaluation, comment, restaurantPhoto } = location.state;
+  const { id, evaluation, comment, restaurantName, restaurantPhoto } =
+    location.state;
   const [errors, setErrors] = useState({});
   const [evaluationUpdate, setEvaluationUpdate] = useState(evaluation || "");
   const [commentUpdate, setCommentUpdate] = useState(comment || "");
@@ -98,6 +100,9 @@ export const EditComment = () => {
       <BackgroundWrapper src={`/assets/restaurants/${restaurantPhoto}`}>
         <div>
           <h1>Edit Comment</h1>
+          <Breadcrumbs
+            items={["Restaurants", `${restaurantName}`, "Edit Comment"]}
+          />
         </div>
       </BackgroundWrapper>
       <Form>

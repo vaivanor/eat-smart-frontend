@@ -17,6 +17,7 @@ import { Form } from "../components/Form/Form.jsx";
 import { DatePicker } from "../components/DatePicker/DatePicker.jsx";
 import { TimePicker } from "../components/TimePicker/TimePicker.jsx";
 import { Error } from "./Error.jsx";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const EditReservation = () => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ export const EditReservation = () => {
     seats,
     comment,
     restaurantId,
+    restaurantName,
     restaurantPhoto,
     restaurantWorkingDays,
   } = location.state;
@@ -156,6 +158,9 @@ export const EditReservation = () => {
       <BackgroundWrapper src={`/assets/restaurants/${restaurantPhoto}`}>
         <div>
           <h1>Edit Reservation</h1>
+          <Breadcrumbs
+            items={["Reservations", `${restaurantName}`, "Edit Reservation"]}
+          />
         </div>
       </BackgroundWrapper>
       <Form>
@@ -165,7 +170,7 @@ export const EditReservation = () => {
             label="Date"
             workingHours={restaurantWorkingDays}
             onChange={(selectedDate) => {
-              setDate(selectedDate);
+              setDateUpdate(selectedDate);
               if (errors.date) {
                 setErrors((prev) => ({ ...prev, date: "" }));
               }

@@ -17,6 +17,7 @@ import { Form } from "../components/Form/Form.jsx";
 import { DatePicker } from "../components/DatePicker/DatePicker.jsx";
 import { TimePicker } from "../components/TimePicker/TimePicker.jsx";
 import { Error } from "./Error.jsx";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const NewReservation = () => {
   const navigate = useNavigate();
@@ -28,8 +29,12 @@ export const NewReservation = () => {
     );
   }
 
-  const { restaurantId, restaurantPhoto, restaurantWorkingDays } =
-    location.state;
+  const {
+    restaurantId,
+    restaurantName,
+    restaurantPhoto,
+    restaurantWorkingDays,
+  } = location.state;
 
   const [errors, setErrors] = useState({});
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -148,6 +153,9 @@ export const NewReservation = () => {
       <BackgroundWrapper src={`/assets/restaurants/${restaurantPhoto}`}>
         <div>
           <h1>New Reservation</h1>
+          <Breadcrumbs
+            items={["Restaurants", `${restaurantName}`, "New Reservation"]}
+          />
         </div>
       </BackgroundWrapper>
       <Form>

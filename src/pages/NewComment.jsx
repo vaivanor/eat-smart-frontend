@@ -15,6 +15,7 @@ import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
 import { Error } from "./Error.jsx";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const NewComment = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const NewComment = () => {
     );
   }
 
-  const { restaurantId, restaurantPhoto } = location.state;
+  const { restaurantId, restaurantName, restaurantPhoto } = location.state;
 
   const [errors, setErrors] = useState({});
   const [evaluation, setEvaluation] = useState("");
@@ -92,6 +93,9 @@ export const NewComment = () => {
       <BackgroundWrapper src={`/assets/restaurants/${restaurantPhoto}`}>
         <div>
           <h1>New Comment</h1>
+          <Breadcrumbs
+            items={["Restaurants", `${restaurantName}`, "New Comment"]}
+          />
         </div>
       </BackgroundWrapper>
       <Form>
