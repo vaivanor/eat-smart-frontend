@@ -95,7 +95,8 @@ export const NewComment = () => {
             type="number"
             value={evaluation}
             onChange={(e) => {
-              setEvaluation(e.target.value);
+              const value = e.target.value;
+              setEvaluation(value === "" ? "" : Number(value));
               if (errors.evaluation) {
                 setErrors((prev) => ({ ...prev, evaluation: "" }));
               }

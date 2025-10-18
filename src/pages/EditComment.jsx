@@ -51,6 +51,7 @@ export const EditComment = () => {
             evaluation: evaluationUpdate,
             comment: commentUpdate,
           },
+          requireAuth: true,
           onSuccess: (result) => {
             if (result.success) {
               showModal({
@@ -100,7 +101,8 @@ export const EditComment = () => {
             type="number"
             value={evaluationUpdate}
             onChange={(e) => {
-              setEvaluationUpdate(e.target.value);
+              const value = e.target.value;
+              setEvaluationUpdate(value === "" ? "" : Number(value));
               if (errors.evaluation) {
                 setErrors((prev) => ({ ...prev, evaluation: "" }));
               }

@@ -156,7 +156,8 @@ export const NewReservation = () => {
             type="number"
             value={seats}
             onChange={(e) => {
-              setSeats(e.target.value);
+              const value = e.target.value;
+              setSeats(value === "" ? "" : Number(value));
               if (errors.seats) {
                 setErrors((prev) => ({ ...prev, seats: "" }));
               }
@@ -175,6 +176,7 @@ export const NewReservation = () => {
               }
             }}
             error={errors.time}
+            hasSelection={Boolean(date && seats)}
           />
 
           <TextArea

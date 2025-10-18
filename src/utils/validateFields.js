@@ -90,8 +90,8 @@ export const validateSignUpFields = ({
 export const validateCommentFields = ({ evaluation, comment }) => {
   const errors = {};
 
-  if (!evaluation) {
-    errors.evaluation = "*Evaluation is required.";
+  if (evaluation === "" || evaluation === null || isNaN(evaluation)) {
+    errors.seats = "*Evaluation is required.";
   } else if (evaluation < 1 || evaluation > 5) {
     errors.evaluation = "Evaluation must be between 1 and 5.";
   }
@@ -173,14 +173,14 @@ export const validateProfileUpdateFields = ({
 export const validateReservationFields = ({ seats, time }) => {
   const errors = {};
 
-  if (!seats) {
+  if (seats === "" || seats === null || isNaN(seats)) {
     errors.seats = "*People number is required.";
   } else if (seats < 1) {
-    errors.seats = "People number must be between 1 and 5.";
+    errors.seats = "People number must be at least 1.";
   }
 
   if (!time?.trim()) {
-    errors.time = "*Please select a time from available options.";
+    errors.time = "*Select a time from available options.";
   }
 
   return errors;
