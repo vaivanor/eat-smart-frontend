@@ -128,6 +128,7 @@ export const Restaurant = () => {
           id: comment._id,
           evaluation: comment.evaluation,
           comment: comment.comment,
+          restaurantName: restaurant.name,
           restaurantPhoto: restaurant.photo,
         },
       }
@@ -186,6 +187,7 @@ export const Restaurant = () => {
                       {
                         state: {
                           restaurantId,
+                          restaurantName: restaurant.name,
                           restaurantPhoto: restaurant.photo,
                           restaurantWorkingDays: restaurant.workingHours,
                         },
@@ -204,6 +206,7 @@ export const Restaurant = () => {
                       {
                         state: {
                           restaurantId,
+                          restaurantName: restaurant.name,
                           restaurantPhoto: restaurant.photo,
                         },
                       }

@@ -94,6 +94,7 @@ export const Reservations = () => {
         seats: reservation.seats,
         comment: reservation.additional,
         restaurantId: reservation.restaurant_id,
+        restaurantName: reservation.restaurant.name,
         restaurantPhoto: reservation.restaurant.photo,
         restaurantWorkingDays: reservation.restaurant.workingHours,
       },
