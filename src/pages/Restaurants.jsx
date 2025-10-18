@@ -4,22 +4,25 @@ import bg from "../assets/background/bg.jpeg";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { Loader } from "../components/Loader/Loader.jsx";
 import { useState, useEffect } from "react";
-import { useAppContext } from "../store/AppContext.jsx";
 import { fetchData } from "../utils/fetchData.js";
 import { RestaurantCard } from "../components/RestaurantCard/RestaurantCard.jsx";
+import { Input } from "../components/Input/Input.jsx";
 
 export const Restaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [searchInputContent, setSearchInputContent] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [columns, setColumns] = useState(1);
 
   useEffect(() => {
     fetchData({
-      endpoint: "/restaurants",
+      endpoint: `/restaurants?sortBy=name&order=asc`,
       method: "GET",
       setIsLoading,
       onSuccess: (result) => {
         setRestaurants(result.data);
+        setFilteredRestaurants(result.data);
       },
       onError: (error) => {
         showModal({
@@ -42,6 +45,23 @@ export const Restaurants = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const inputValue = searchInputContent.toLowerCase().trim();
+
+      const filtered = restaurants.filter(
+        (restaurant) =>
+          restaurant.name.toLowerCase().includes(inputValue) ||
+          restaurant.city.toLowerCase().includes(inputValue) ||
+          restaurant.cuisine.some((c) => c.toLowerCase().includes(inputValue))
+      );
+
+      setFilteredRestaurants(filtered);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [searchInputContent, restaurants]);
+
   return (
     <PageWrapper>
       <BackgroundWrapper src={bg}>
@@ -49,21 +69,34 @@ export const Restaurants = () => {
           <h1>Restaurants</h1>
         </div>
       </BackgroundWrapper>
+      <GridWrapper columns={1}>
+        <Input
+          id="search"
+          label="Search"
+          type="text"
+          value={searchInputContent}
+          onChange={(e) => setSearchInputContent(e.target.value)}
+        />
+      </GridWrapper>
       {isLoading ? (
         <Loader />
       ) : (
         <GridWrapper columns={columns}>
-          {restaurants.map((restaurant) => (
-            <RestaurantCard
-              key={restaurant._id}
-              id={restaurant._id}
-              name={restaurant.name}
-              city={restaurant.city}
-              cuisine={restaurant.cuisine}
-              photo={restaurant.photo}
-              averageRating={restaurant.averageRating}
-            />
-          ))}
+          {filteredRestaurants.length === 0 ? (
+            <p style={{ marginTop: "0" }}>No results...</p>
+          ) : (
+            filteredRestaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant._id}
+                id={restaurant._id}
+                name={restaurant.name}
+                city={restaurant.city}
+                cuisine={restaurant.cuisine}
+                photo={restaurant.photo}
+                averageRating={restaurant.averageRating}
+              />
+            ))
+          )}
         </GridWrapper>
       )}
     </PageWrapper>
