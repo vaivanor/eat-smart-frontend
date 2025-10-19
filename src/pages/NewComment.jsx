@@ -36,7 +36,7 @@ export const NewComment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validateCommentFields({ evaluation, comment });
+    const validationErrors = validateCommentFields({ evaluation });
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;

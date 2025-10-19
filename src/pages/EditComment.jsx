@@ -39,7 +39,6 @@ export const EditComment = () => {
 
     const validationErrors = validateCommentFields({
       evaluation: evaluationUpdate,
-      comment: commentUpdate,
     });
 
     if (Object.keys(validationErrors).length > 0) {
