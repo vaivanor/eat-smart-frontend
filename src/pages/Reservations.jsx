@@ -1,22 +1,22 @@
-import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
-import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
 import bg from "../assets/background/bg-2.jpeg";
-import { useAppContext } from "../store/AppContext.jsx";
-import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
-import { ItemCard } from "../components/ItemCard/ItemCard.jsx";
 import mapIcon from "../assets/icons/map.svg";
 import calendarIcon from "../assets/icons/calendar.svg";
 import clockIcon from "../assets/icons/clock.svg";
 import personIcon from "../assets/icons/person.svg";
 import pinIcon from "../assets/icons/pin.svg";
-import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
 import { useState, useEffect } from "react";
-import { fetchData } from "../utils/fetchData.js";
-import { Modal } from "../components/Modal/Modal.jsx";
-import { useModal } from "../utils/useModal.js";
 import { useNavigate } from "react-router-dom";
+import { fetchData } from "../utils/fetchData.js";
+import { useModal } from "../utils/useModal.js";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { ItemCard } from "../components/ItemCard/ItemCard.jsx";
+import { InfoRow } from "../components/InfoRow/InfoRow.jsx";
+import { Modal } from "../components/Modal/Modal.jsx";
 import { Loader } from "../components/Loader/Loader.jsx";
 import { Input } from "../components/Input/Input.jsx";
+import { useAppContext } from "../store/AppContext.jsx";
 
 export const Reservations = () => {
   const { currentUser } = useAppContext();

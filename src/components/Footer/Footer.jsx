@@ -1,8 +1,8 @@
-import style from "./Footer.module.scss";
 import email from "../../assets/icons/email-light.svg";
 import phone from "../../assets/icons/phone-light.svg";
 import instagram from "../../assets/icons/instagram-light.svg";
 import facebook from "../../assets/icons/facebook-light.svg";
+import style from "./Footer.module.scss";
 
 export const Footer = () => {
   return (

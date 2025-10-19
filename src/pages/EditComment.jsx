@@ -1,21 +1,20 @@
+import backArrow from "../assets/icons/arrow.svg";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { validateCommentFields } from "../utils/validateFields.js";
+import { useModal } from "../utils/useModal.js";
+import { fetchData } from "../utils/fetchData.js";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
-import backArrow from "../assets/icons/arrow.svg";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 import { Button } from "../components/Button/Button.jsx";
 import { Input } from "../components/Input/Input.jsx";
-import { useState } from "react";
-import { validateCommentFields } from "../utils/validateFields.js";
-import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
-import { fetchData } from "../utils/fetchData.js";
 import { TextArea } from "../components/TextArea/TextArea.jsx";
 import { Form } from "../components/Form/Form.jsx";
 import { Error } from "./Error.jsx";
-import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const EditComment = () => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
+import { fetchData } from "../utils/fetchData.js";
+import { refreshAccessToken } from "../utils/refreshAccessToken.js";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { fetchData } from "../utils/fetchData";
-import { refreshAccessToken } from "../utils/refreshAccessToken";
 
 const AppContext = createContext();
 

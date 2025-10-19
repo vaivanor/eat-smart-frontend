@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { Button } from "../components/Button/Button.jsx";
-import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
-import { fetchData } from "../utils/fetchData.js";
-import { useAppContext } from "../store/AppContext.jsx";
-import { useNavigate } from "react-router-dom";
-import { useModal } from "../utils/useModal.js";
-import { Modal } from "../components/Modal/Modal.jsx";
-import { SignForm } from "../components/SignForm/SignForm.jsx";
-import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
-import bg from "../assets/background/bg-2.jpeg";
-import { Input } from "../components/Input/Input.jsx";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import bg from "../assets/background/bg-2.jpeg";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { fetchData } from "../utils/fetchData.js";
 import { validateSignInFields } from "../utils/validateFields.js";
+import { useModal } from "../utils/useModal.js";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { SignForm } from "../components/SignForm/SignForm.jsx";
+import { Button } from "../components/Button/Button.jsx";
+import { Input } from "../components/Input/Input.jsx";
+import { Modal } from "../components/Modal/Modal.jsx";
+import { useAppContext } from "../store/AppContext.jsx";
 
 const StyledLink = styled(Link)`
   color: #feb161;

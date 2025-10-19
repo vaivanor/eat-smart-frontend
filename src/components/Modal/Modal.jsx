@@ -1,5 +1,5 @@
-import { Button } from "../Button/Button.jsx";
 import style from "./Modal.module.scss";
+import { Button } from "../Button/Button.jsx";
 
 export const Modal = ({
   isOpen,

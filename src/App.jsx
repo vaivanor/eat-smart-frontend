@@ -1,18 +1,18 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { Profile } from "./pages/Profile";
+import { EditProfile } from "./pages/EditProfile";
 import { Restaurants } from "./pages/Restaurants";
 import { Restaurant } from "./pages/Restaurant";
-import { SignIn } from "./pages/SignIn";
-import { SignUp } from "./pages/SignUp";
-import { Profile } from "./pages/Profile";
 import { Reservations } from "./pages/Reservations";
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { EditComment } from "./pages/EditComment";
-import { NewComment } from "./pages/NewComment";
-import { EditProfile } from "./pages/EditProfile";
 import { NewReservation } from "./pages/NewReservation";
 import { EditReservation } from "./pages/EditReservation";
+import { NewComment } from "./pages/NewComment";
+import { EditComment } from "./pages/EditComment";
+import { SignIn } from "./pages/SignIn";
+import { SignUp } from "./pages/SignUp";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Error } from "./pages/Error";
 
 function App() {
@@ -53,30 +53,6 @@ function App() {
         <Route
           element={
             <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-          path="/profile"
-        />
-        <Route
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-          path="/profile/edit-profile"
-        />
-        <Route
-          element={
-            <PrivateRoute>
-              <Reservations />
-            </PrivateRoute>
-          }
-          path="/reservations"
-        />
-        <Route
-          element={
-            <PrivateRoute>
               <Reservations />
             </PrivateRoute>
           }
@@ -89,6 +65,22 @@ function App() {
             </PrivateRoute>
           }
           path="/reservations/edit-reservation"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+          path="/profile"
+        />
+        <Route
+          element={
+            <PrivateRoute>
+              <EditProfile />
+            </PrivateRoute>
+          }
+          path="/profile/edit-profile"
         />
         <Route Component={Error} path="/*" />
       </Routes>

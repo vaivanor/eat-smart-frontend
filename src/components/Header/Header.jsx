@@ -1,8 +1,7 @@
-import { Navigation } from "../Navigation/Navigation.jsx";
-import { Link } from "react-router-dom";
-
-import style from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
+import style from "./Header.module.scss";
+import { Link } from "react-router-dom";
+import { Navigation } from "../Navigation/Navigation.jsx";
 
 export const Header = () => {
   return (

@@ -1,20 +1,20 @@
+import backArrow from "../assets/icons/arrow.svg";
+import bg from "../assets/background/bg-2.jpeg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useModal } from "../utils/useModal.js";
+import { fetchData } from "../utils/fetchData.js";
+import { validateProfileUpdateFields } from "../utils/validateFields.js";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 import { ImageButton } from "../components/ImageButton/ImageButton.jsx";
-import backArrow from "../assets/icons/arrow.svg";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button/Button.jsx";
 import { Input } from "../components/Input/Input.jsx";
-import { useState } from "react";
-import { validateProfileUpdateFields } from "../utils/validateFields.js";
-import { useModal } from "../utils/useModal.js";
 import { Modal } from "../components/Modal/Modal.jsx";
-import { fetchData } from "../utils/fetchData.js";
 import { Form } from "../components/Form/Form.jsx";
 import { useAppContext } from "../store/AppContext.jsx";
-import bg from "../assets/background/bg-2.jpeg";
-import { Breadcrumbs } from "../components/Breadcrumbs/Breadcrumbs.jsx";
 
 export const EditProfile = () => {
   const { currentUser, setCurrentUser } = useAppContext();

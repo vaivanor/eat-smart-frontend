@@ -2,9 +2,9 @@ import style from "./RestaurantCard.module.scss";
 import cityIcon from "../../assets/icons/city.svg";
 import cuisineIcon from "../../assets/icons/cuisine.svg";
 import rateIcon from "../../assets/icons/rate.svg";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { InfoRow } from "../InfoRow/InfoRow";
-import { useNavigate } from "react-router-dom";
 
 export const RestaurantCard = ({
   id,

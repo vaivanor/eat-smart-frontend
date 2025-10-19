@@ -1,6 +1,6 @@
 import style from "./DatePicker.module.scss";
-import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ReactDatePicker from "react-datepicker";
 
 export const DatePicker = ({
   id,

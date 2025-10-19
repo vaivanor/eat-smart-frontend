@@ -1,7 +1,7 @@
 import style from "./PageWrapper.module.scss";
-import { Footer } from "../Footer/Footer.jsx";
-import { Header } from "../Header/Header.jsx";
 import { useEffect } from "react";
+import { Header } from "../Header/Header.jsx";
+import { Footer } from "../Footer/Footer.jsx";
 
 export const PageWrapper = ({ children, backgroundSrc }) => {
   const backgroundStyle = backgroundSrc

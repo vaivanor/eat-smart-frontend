@@ -1,12 +1,12 @@
-import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
-import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import landingBg from "../assets/background/landing-bg.jpeg";
 import bg from "../assets/background/bg.jpeg";
 import clock from "../assets/icons/clock.svg";
 import person from "../assets/icons/person.svg";
 import mobile from "../assets/icons/mobile.svg";
-import { Button } from "../components/Button/Button.jsx";
 import { useNavigate } from "react-router-dom";
+import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { Button } from "../components/Button/Button.jsx";
 import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { useAppContext } from "../store/AppContext.jsx";
 

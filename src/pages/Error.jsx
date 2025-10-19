@@ -1,5 +1,5 @@
-import { PageWrapper } from "../components/PageWrapper/PageWrapper";
-import { GridWrapper } from "../components/GridWrapper/GridWrapper";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 
 export const Error = ({ message }) => {
   return (

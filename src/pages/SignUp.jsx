@@ -1,16 +1,16 @@
+import bg from "../assets/background/bg-3.jpeg";
 import { useState } from "react";
-import { Button } from "../components/Button/Button.jsx";
-import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
-import { fetchData } from "../utils/fetchData.js";
-import { useAppContext } from "../store/AppContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { fetchData } from "../utils/fetchData.js";
 import { useModal } from "../utils/useModal.js";
+import { validateSignUpFields } from "../utils/validateFields.js";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
 import { Modal } from "../components/Modal/Modal.jsx";
 import { SignForm } from "../components/SignForm/SignForm.jsx";
-import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
-import bg from "../assets/background/bg-3.jpeg";
 import { Input } from "../components/Input/Input.jsx";
-import { validateSignUpFields } from "../utils/validateFields.js";
+import { Button } from "../components/Button/Button.jsx";
+import { useAppContext } from "../store/AppContext.jsx";
 
 export const SignUp = () => {
   const [name, setName] = useState("");

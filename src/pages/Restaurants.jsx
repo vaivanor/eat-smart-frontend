@@ -1,10 +1,10 @@
-import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
-import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
 import bg from "../assets/background/bg.jpeg";
-import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
-import { Loader } from "../components/Loader/Loader.jsx";
 import { useState, useEffect } from "react";
 import { fetchData } from "../utils/fetchData.js";
+import { BackgroundWrapper } from "../components/BackgroundWrapper/BackgroundWrapper.jsx";
+import { PageWrapper } from "../components/PageWrapper/PageWrapper.jsx";
+import { GridWrapper } from "../components/GridWrapper/GridWrapper.jsx";
+import { Loader } from "../components/Loader/Loader.jsx";
 import { RestaurantCard } from "../components/RestaurantCard/RestaurantCard.jsx";
 import { Input } from "../components/Input/Input.jsx";
 
