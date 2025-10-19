@@ -87,11 +87,11 @@ export const validateSignUpFields = ({
   return errors;
 };
 
-export const validateCommentFields = ({ evaluation, comment }) => {
+export const validateCommentFields = ({ evaluation }) => {
   const errors = {};
 
   if (evaluation === "" || evaluation === null || isNaN(evaluation)) {
-    errors.seats = "*Evaluation is required.";
+    errors.evaluation = "*Evaluation is required.";
   } else if (evaluation < 1 || evaluation > 5) {
     errors.evaluation = "Evaluation must be between 1 and 5.";
   }
