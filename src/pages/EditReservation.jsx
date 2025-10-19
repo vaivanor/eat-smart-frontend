@@ -70,7 +70,10 @@ export const EditReservation = () => {
       onSuccess: (result) => {
         if (result.success) {
           setAvailableTimes(result.data);
-          if (result.data.length > 0) {
+
+          if (result.data.includes(timeUpdate)) {
+            setTimeUpdate(timeUpdate);
+          } else if (result.data.length > 0) {
             setTimeUpdate(result.data[0]);
           }
         } else {
@@ -204,7 +207,7 @@ export const EditReservation = () => {
               }
             }}
             error={errors.time}
-            hasSelection={Boolean(date && seats)}
+            hasSelection={Boolean(dateUpdate && seatsUpdate)}
           />
           <TextArea
             id="additional"
