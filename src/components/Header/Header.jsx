@@ -2,7 +2,7 @@ import { Navigation } from "../Navigation/Navigation.jsx";
 import { Link } from "react-router-dom";
 
 import style from "./Header.module.scss";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/icons/logo.svg";
 
 export const Header = () => {
   return (

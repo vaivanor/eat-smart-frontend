@@ -1,8 +1,8 @@
 import style from "./Navigation.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import menu from "../../assets/menu.svg";
-import menuClose from "../../assets/menu-close.svg";
+import menu from "../../assets/icons/menu.svg";
+import menuClose from "../../assets/icons/menu-close.svg";
 import { useEffect } from "react";
 import { useAppContext } from "../../store/AppContext";
 import { useMediaQuery } from "react-responsive";
