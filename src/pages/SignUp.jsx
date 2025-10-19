@@ -47,7 +47,7 @@ export const SignUp = () => {
     const result = await fetchData({
       endpoint: "/register",
       method: "POST",
-      body: { name, surname, phone, email, password: newPassword },
+      body: { name, surname, phone, email, password },
       setIsLoading,
       onSuccess: (result) => {
         if (result.success) {
