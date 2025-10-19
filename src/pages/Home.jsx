@@ -19,7 +19,7 @@ export const Home = () => {
         <div>
           <h1>Smart dining starts here</h1>
           <p>
-            Eatsmart helps you book a table in the finest restaurants and share
+            EatSmart helps you book a table in the finest restaurants and share
             experience with others? Join the smart dining revolution!
           </p>
         </div>
