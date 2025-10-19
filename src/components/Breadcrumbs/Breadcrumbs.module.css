@@ -9,7 +9,7 @@
 }
 .container .separator {
   display: inline-block;
-  margin: 0 0.8rem 0.1rem 0.6rem;
+  margin: 0 0.5rem 0.1rem 0.6rem;
   width: 6px;
   height: 6px;
   border-left: 2px solid white;
